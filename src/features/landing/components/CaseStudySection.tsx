@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Trophy, TrendingUp, Users, Clock } from "lucide-react";
+import Image from "next/image";
 
 const results = [
     { icon: TrendingUp, value: "+340%", label: "Leads captados" },
@@ -11,8 +12,21 @@ const results = [
 
 export default function CaseStudySection() {
     return (
-        <section className="relative py-24 md:py-32 bg-deep-navy">
-            <div className="max-w-5xl mx-auto px-6">
+        <section className="relative py-24 md:py-32 bg-deep-navy overflow-hidden">
+            {/* Background Image Layer */}
+            <div className="absolute inset-0 z-0 opacity-15 mix-blend-overlay pointer-events-none">
+                <Image
+                    src="/assets/backgrounds/bg-case-study.png"
+                    alt="Growth Chart"
+                    fill
+                    className="object-cover"
+                    quality={90}
+                />
+            </div>
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 z-0 bg-gradient-to-t from-deep-navy via-deep-navy/80 to-deep-navy/40 pointer-events-none" />
+
+            <div className="relative z-10 max-w-5xl mx-auto px-6">
                 {/* Section Title */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
@@ -20,7 +34,7 @@ export default function CaseStudySection() {
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-4xl md:text-6xl font-bold mb-4">
+                    <h2 className="text-4xl md:text-6xl font-bold mb-4 text-white">
                         Resultados <span className="text-gradient">Reales</span>, No
                         Promesas
                     </h2>
@@ -31,7 +45,7 @@ export default function CaseStudySection() {
                     initial={{ opacity: 0, x: -50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    className="relative glassmorphism rounded-3xl overflow-hidden"
+                    className="relative glassmorphism rounded-3xl overflow-hidden backdrop-blur-md bg-deep-navy/60 border border-white/10"
                 >
                     {/* Trophy Badge */}
                     <div className="absolute -top-4 -left-4 w-20 h-20 bg-warning-amber rounded-full flex items-center justify-center shadow-lg z-10">
@@ -45,7 +59,7 @@ export default function CaseStudySection() {
                         </span>
 
                         {/* Title */}
-                        <h3 className="text-2xl md:text-3xl font-bold mb-8">
+                        <h3 className="text-2xl md:text-3xl font-bold mb-8 text-white">
                             Academia de MMA — Transformación Digital
                         </h3>
 
@@ -76,7 +90,7 @@ export default function CaseStudySection() {
                         </div>
 
                         {/* Features */}
-                        <div className="glassmorphism p-4 rounded-xl mb-8">
+                        <div className="glassmorphism p-4 rounded-xl mb-8 border border-white/5 bg-white/5">
                             <p className="text-sm text-silver-mist">
                                 ▸ Diseño dark/premium acorde a la identidad MMA &nbsp;•&nbsp; ▸
                                 Formulario de registro para clase de prueba gratis &nbsp;•&nbsp;

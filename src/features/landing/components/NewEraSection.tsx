@@ -1,140 +1,102 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { TrendingUp, Users, Zap, Clock } from "lucide-react";
-
-const timeline = [
-    { year: "2019", event: "GPT-2 demuestra que las máquinas pueden escribir" },
-    { year: "2020", event: "La pandemia acelera la digitalización 10 años" },
-    { year: "2022", event: "ChatGPT alcanza 100M usuarios en 2 meses" },
-    { year: "2023", event: "La IA generativa revoluciona TODAS las industrias" },
-    { year: "2024-25", event: "Empresas con IA crecen 40% más rápido" },
-];
-
-const stats = [
-    { icon: TrendingUp, value: "40%", label: "Aumento en productividad" },
-    { icon: Users, value: "73%", label: "Empresas planean implementar IA" },
-    { icon: Zap, value: "3X", label: "Mayor conversión con chatbots" },
-    { icon: Clock, value: "24/7", label: "Disponibilidad sin más personal" },
-];
+import { MoveRight, Zap } from "lucide-react";
+import Image from "next/image";
 
 export default function NewEraSection() {
     return (
-        <section className="relative py-24 md:py-32 overflow-hidden">
-            {/* Background Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-deep-navy via-deep-navy/95 to-cyber-purple/20" />
+        <section className="relative py-32 overflow-hidden bg-deep-navy">
+            {/* Background Image Layer */}
+            <div className="absolute inset-0 z-0 opacity-20 mix-blend-color-dodge pointer-events-none">
+                <Image
+                    src="/assets/backgrounds/bg-new-era.png"
+                    alt="New Era Dawn"
+                    fill
+                    className="object-cover"
+                    quality={90}
+                />
+            </div>
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-deep-navy via-deep-navy/95 to-cyber-purple/20 opacity-90 pointer-events-none" />
 
-            <div className="relative z-10 max-w-7xl mx-auto px-6">
-                {/* Section Title */}
+            <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+                {/* Visual Content - Timeline/Grid */}
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, x: -50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    className="text-center mb-16"
+                    className="relative"
                 >
-                    <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
-                        Bienvenido a la Era Más{" "}
-                        <span className="text-gradient">Transformadora</span>
-                        <br />
-                        de la Historia Humana
-                    </h2>
-                </motion.div>
+                    <div className="absolute inset-0 bg-electric-blue/20 blur-[100px] rounded-full" />
+                    <div className="relative bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-xl shadow-2xl">
+                        {/* Fake Dashboard Elements */}
+                        <div className="flex items-center justify-between mb-8 border-b border-white/5 pb-4">
+                            <div className="flex gap-2">
+                                <div className="w-3 h-3 rounded-full bg-red-500" />
+                                <div className="w-3 h-3 rounded-full bg-yellow-500" />
+                                <div className="w-3 h-3 rounded-full bg-green-500" />
+                            </div>
+                            <span className="text-xs font-mono text-silver-mist">EVOLUTION_TRACKER_v1.0</span>
+                        </div>
 
-                <div className="grid lg:grid-cols-2 gap-16 items-center">
-                    {/* Timeline */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        className="relative"
-                    >
-                        {/* Vertical Line */}
-                        <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-electric-blue via-cyber-purple to-neon-cyan" />
-
-                        <div className="space-y-8">
-                            {timeline.map((item, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, x: -20 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: index * 0.1 }}
-                                    className="flex items-start gap-6 pl-12 relative"
-                                >
-                                    {/* Node */}
-                                    <div className="absolute left-0 w-8 h-8 rounded-full bg-cyber-purple flex items-center justify-center shadow-glow-sm">
-                                        <div className="w-3 h-3 rounded-full bg-neon-cyan" />
+                        <div className="space-y-6">
+                            {[
+                                { year: "1990", label: "Internet Era", color: "bg-white/20" },
+                                { year: "2005", label: "Mobile Era", color: "bg-white/40" },
+                                { year: "2015", label: "Cloud Era", color: "bg-white/60" },
+                                { year: "2024", label: "AI Revolution", color: "bg-neon-cyan active" },
+                            ].map((item, i) => (
+                                <div key={i} className="flex items-center gap-4">
+                                    <span className="text-sm font-mono text-silver-mist w-12">{item.year}</span>
+                                    <div className="flex-1 h-2 bg-white/10 rounded-full overflow-hidden">
+                                        <motion.div
+                                            initial={{ width: 0 }}
+                                            whileInView={{ width: "100%" }}
+                                            transition={{ duration: 1, delay: i * 0.2 }}
+                                            className={`h-full ${item.color.includes("active") ? "bg-neon-cyan shadow-glow" : "bg-white/30"}`}
+                                        />
                                     </div>
-
-                                    <div>
-                                        <span className="text-neon-cyan font-bold text-lg">
-                                            {item.year}
-                                        </span>
-                                        <p className="text-silver-mist mt-1">{item.event}</p>
-                                    </div>
-                                </motion.div>
+                                    <span className={`text-sm font-bold ${item.color.includes("active") ? "text-neon-cyan" : "text-white/50"}`}>
+                                        {item.label}
+                                    </span>
+                                </div>
                             ))}
                         </div>
-                    </motion.div>
-
-                    {/* Content */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        <p className="text-lg md:text-xl text-silver-mist mb-6 leading-relaxed">
-                            Hace apenas 5 años, la Inteligencia Artificial era ciencia ficción
-                            reservada para gigantes como Google o Tesla.
-                        </p>
-
-                        <p className="text-lg md:text-xl text-white mb-6 leading-relaxed">
-                            Hoy, esa misma tecnología está disponible para{" "}
-                            <span className="text-neon-cyan font-semibold">TU</span> negocio.
-                        </p>
-
-                        <p className="text-lg md:text-xl text-silver-mist mb-8 leading-relaxed">
-                            Por primera vez en la historia, un emprendedor con una laptop
-                            puede competir con corporaciones usando las mismas herramientas
-                            que antes costaban millones de dólares.
-                        </p>
-
-                        <p className="text-xl md:text-2xl font-semibold text-white">
-                            La única pregunta es:
-                            <br />
-                            <span className="text-warning-amber">
-                                ¿Serás de los que se adaptan...
-                            </span>
-                            <br />o de los que se quedan atrás?
-                        </p>
-                    </motion.div>
-                </div>
-
-                {/* Stats Grid */}
-                <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="mt-20 glassmorphism rounded-3xl p-8 md:p-12"
-                >
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                        {stats.map((stat, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.1 }}
-                                className="text-center"
-                            >
-                                <stat.icon className="w-8 h-8 text-electric-blue mx-auto mb-3" />
-                                <p className="text-4xl md:text-5xl font-bold text-electric-blue mb-2">
-                                    {stat.value}
-                                </p>
-                                <p className="text-sm text-silver-mist">{stat.label}</p>
-                            </motion.div>
-                        ))}
                     </div>
+                </motion.div>
+
+                {/* Text Content */}
+                <motion.div
+                    initial={{ opacity: 0, x: 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                >
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyber-purple/10 border border-cyber-purple/20 text-cyber-purple text-sm font-medium mb-6">
+                        <Zap className="w-4 h-4 fill-cyber-purple" />
+                        <span className="tracking-wide">CAMBIO DE PARADIGMA</span>
+                    </div>
+
+                    <h2 className="text-4xl md:text-6xl font-display font-bold text-white mb-6 leading-tight">
+                        Bienvenido a la Era Más Transformadora de la
+                        <span className="text-gradient"> Historia Humana</span>.
+                    </h2>
+
+                    <p className="text-lg text-silver-mist mb-6 leading-relaxed">
+                        La Inteligencia Artificial no es una "tendencia". Es un cambio fundamental
+                        en cómo funciona el mundo, similar a la invención de la electricidad o internet.
+                    </p>
+
+                    <div className="p-6 bg-white/5 border-l-4 border-neon-cyan rounded-r-xl mb-8">
+                        <p className="text-white text-lg font-medium italic">
+                            &quot;En los próximos 5 años, habrá dos tipos de negocios: los que usan IA
+                            y los que ya no existen.&quot;
+                        </p>
+                    </div>
+
+                    <a href="#cta" className="inline-flex items-center gap-2 text-neon-cyan font-bold hover:gap-4 transition-all">
+                        PREPARA TU NEGOCIO <MoveRight className="w-5 h-5" />
+                    </a>
                 </motion.div>
             </div>
         </section>

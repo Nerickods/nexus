@@ -1,200 +1,143 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check, Star, Sparkles } from "lucide-react";
+import { Check, Star } from "lucide-react";
+import Image from "next/image";
 
 const plans = [
     {
-        name: "STARTER",
-        tagline: "Tu primer paso hacia el futuro",
-        price: "5,900",
-        popular: false,
+        name: "Landing Page",
+        price: "$4,500",
+        description: "Perfecto para campañas de venta y profesionales independientes.",
         features: [
-            "Landing Page Profesional",
-            "Diseño 100% personalizado",
-            "Responsive completo",
-            "Dominio 1 año incluido",
-            "Hosting 1 año incluido",
-            "Formulario de contacto",
-            "Integración Google Analytics",
+            "Diseño de Alto Impacto (One-Page)",
+            "Copywriting Persuasivo",
+            "SEO Técnico Básico",
+            "Formulario de Contacto",
+            "Entrega en 5 días",
         ],
-        delivery: "7-10 días hábiles",
+        highlight: false,
     },
     {
-        name: "GROWTH",
-        tagline: "Automatiza y escala",
-        price: "14,900",
-        popular: true,
+        name: "Web Corporativa + IA",
+        price: "$8,500",
+        description: "Para negocios que buscan autoridad y automatización.",
         features: [
-            "Todo lo de Starter, más:",
-            "Chatbot IA personalizado",
-            "Integración WhatsApp o Instagram",
-            "1,000 conversaciones/mes",
-            "Panel de métricas",
-            "Soporte prioritario 60 días",
+            "Hasta 5 Secciones",
+            "Blog / CMS Básico",
+            "Chatbot IA Entrenamiento Básico",
+            "Integración con WhatsApp",
+            "Optimización de Velocidad",
+            "Entrega en 10 días",
         ],
-        delivery: "15-20 días hábiles",
+        highlight: true,
+        tag: "Más Popular",
     },
     {
-        name: "ENTERPRISE",
-        tagline: "Transformación completa",
-        price: "24,900",
-        popular: false,
+        name: "Nexus Custom",
+        price: "Cotizar",
+        description: "Soluciones complejas para problemas complejos.",
         features: [
-            "Todo lo de Growth, más:",
-            "Automatización de 1 proceso clave",
-            "Integración con tu CRM/email",
-            "Capacitación personalizada",
-            "Soporte extendido 90 días",
-            "Sesión estratégica trimestral",
+            "Desarrollo Full-Stack",
+            "Integraciones API Avanzadas",
+            "Dashboards de Datos",
+            "Automatización de Procesos (RPA)",
+            "Soporte Prioritario",
         ],
-        delivery: "25-30 días hábiles",
+        highlight: false,
     },
 ];
 
 export default function PricingSection() {
     return (
-        <section id="pricing" className="relative py-24 md:py-32 overflow-hidden">
-            {/* Background Pattern - Cyber Grid */}
-            <div className="absolute inset-0 z-0 pointer-events-none">
-                <div className="absolute inset-0 bg-[#0A0F1C]" />
-                <div className="absolute inset-0 bg-[linear-gradient(rgba(0,102,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,102,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[400px] bg-electric-blue/10 blur-[120px] rounded-full mix-blend-screen" />
+        <section id="pricing" className="relative py-24 bg-deep-navy overflow-hidden">
+            {/* Background Image Layer */}
+            <div className="absolute inset-0 z-0 opacity-15 mix-blend-overlay pointer-events-none">
+                <Image
+                    src="/assets/backgrounds/bg-pricing.png"
+                    alt="Premium Vault"
+                    fill
+                    className="object-cover"
+                    quality={90}
+                />
             </div>
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 z-0 bg-gradient-to-t from-deep-navy via-deep-navy/90 to-deep-navy/50 pointer-events-none" />
+
 
             <div className="relative z-10 max-w-7xl mx-auto px-6">
-                {/* Launch Offer Badge */}
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    className="text-center mb-16"
+                >
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                        Precios <span className="text-gradient">Transparentes</span>
+                    </h2>
+                    <p className="text-silver-mist text-lg max-w-2xl mx-auto">
+                        Sin costos ocultos ni mensualidades forzosas. Inversión única para resultados continuos.
+                    </p>
+                </motion.div>
+
+                {/* Launch Offer Banner */}
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center mb-8"
+                    className="bg-electric-blue/10 border border-electric-blue/30 rounded-2xl p-4 mb-12 max-w-3xl mx-auto text-center backdrop-blur-sm"
                 >
-                    <span className="inline-flex items-center gap-2 px-6 py-3 bg-warning-amber text-deep-navy font-bold rounded-full text-sm md:text-base">
-                        <Sparkles className="w-5 h-5" />
-                        OFERTA DE LANZAMIENTO — Primeros 10 clientes
-                    </span>
-                </motion.div>
-
-                {/* Section Title */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-16"
-                >
-                    <h2 className="text-4xl md:text-6xl font-bold mb-4">
-                        Precios <span className="text-gradient">Transparentes</span>
-                    </h2>
-                    <p className="text-lg md:text-xl text-silver-mist">
-                        Para Negocios Reales
+                    <p className="text-neon-cyan font-semibold flex items-center justify-center gap-2">
+                        <Star className="w-5 h-5 fill-neon-cyan" />
+                        OFERTA DE LANZAMIENTO NEXUS.AI:
+                        <span className="text-white font-normal">15% de descuento en todos los servicios durante el mes de lanzamiento.</span>
                     </p>
                 </motion.div>
 
-                {/* Pricing Cards */}
-                <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto relative z-10">
+                <div className="grid md:grid-cols-3 gap-8">
                     {plans.map((plan, index) => (
                         <motion.div
-                            key={plan.name}
-                            initial={{ opacity: 0, y: 50 }}
+                            key={index}
+                            initial={{ opacity: 0, y: 40 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                            className={`relative rounded-3xl p-8 transition-all duration-500 group
-                                ${plan.popular
-                                    ? "bg-deep-navy/80 border-2 border-electric-blue shadow-glow-strong scale-105 z-10"
-                                    : "holo-card hover:border-electric-blue/30"
-                                }
-                            `}
+                            transition={{ delay: index * 0.15 }}
+                            className={`p-8 rounded-3xl border relative flex flex-col backdrop-blur-md bg-deep-navy/80 h-full ${plan.highlight
+                                ? "border-neon-cyan/50 shadow-neon bg-deep-navy/60"
+                                : "border-white/10 hover:border-white/20"
+                                }`}
                         >
-                            {/* Popular Badge */}
-                            {plan.popular && (
-                                <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 w-full text-center">
-                                    <span className="inline-flex items-center gap-2 px-6 py-2 bg-electric-blue text-white font-bold font-display tracking-widest text-sm rounded-full shadow-neon">
-                                        <Star className="w-4 h-4 fill-white animate-pulse" />
-                                        MÁS POPULAR
-                                    </span>
+                            {plan.highlight && (
+                                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-neon-cyan text-deep-navy font-bold px-4 py-1 rounded-full text-sm shadow-glow">
+                                    {plan.tag}
                                 </div>
                             )}
 
-                            {/* Plan Name */}
-                            <h3 className={`text-2xl font-display font-bold mb-2 ${plan.popular ? "text-gradient" : "text-white"}`}>
-                                {plan.name}
-                            </h3>
-                            <p className="text-sm text-silver-mist italic mb-8 border-b border-white/5 pb-6">
-                                &quot;{plan.tagline}&quot;
-                            </p>
-
-                            {/* Price */}
-                            <div className="mb-8">
-                                <div className="flex items-baseline gap-1">
-                                    <span className="text-3xl font-bold text-silver-mist">$</span>
-                                    <span className={`text-6xl font-display font-bold tracking-tighter ${plan.popular ? "text-white drop-shadow-neon" : "text-white"}`}>
-                                        {plan.price}
-                                    </span>
-                                    <span className="text-silver-mist font-medium">MXN</span>
-                                </div>
+                            <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
+                            <div className="text-3xl md:text-4xl font-display font-bold text-electric-blue mb-4">
+                                {plan.price}
+                                {plan.price !== "Cotizar" && <span className="text-lg text-silver-mist font-normal"> mxn</span>}
                             </div>
+                            <p className="text-silver-mist text-sm mb-8">{plan.description}</p>
 
-                            {/* Features List */}
-                            <ul className="space-y-4 mb-10">
+                            <ul className="space-y-4 mb-8 flex-grow">
                                 {plan.features.map((feature, i) => (
                                     <li key={i} className="flex items-start gap-3">
-                                        <div className={`mt-1 p-0.5 rounded-full ${plan.popular ? "bg-neon-cyan/20 text-neon-cyan" : "bg-white/10 text-silver-mist"}`}>
-                                            <Check className="w-3.5 h-3.5" />
-                                        </div>
-                                        <span className={`text-sm ${plan.popular ? "text-white" : "text-silver-mist group-hover:text-white transition-colors"}`}>
-                                            {feature}
-                                        </span>
+                                        <Check className={`w-5 h-5 shrink-0 ${plan.highlight ? "text-neon-cyan" : "text-electric-blue"}`} />
+                                        <span className="text-sm text-gray-300">{feature}</span>
                                     </li>
                                 ))}
                             </ul>
 
-                            {/* Delivery Time */}
-                            <div className="text-xs font-mono text-center text-silver-mist/50 mb-6 uppercase tracking-wider">
-                                Tiempo Estimado: <span className={plan.popular ? "text-neon-cyan" : "text-silver-mist"}>{plan.delivery}</span>
-                            </div>
-
-                            {/* CTA Button */}
-                            <a
-                                href="#cta"
-                                className={`block w-full py-4 rounded-xl font-bold text-center transition-all duration-300 relative overflow-hidden
-                                    ${plan.popular
-                                        ? "bg-gradient-cta text-white shadow-neon hover:scale-105 hover:shadow-glow-strong"
-                                        : "border border-white/20 text-white hover:bg-white/5 hover:border-electric-blue/50"
-                                    }
-                                `}
-                            >
-                                <span className="relative z-10">Agendar Llamada</span>
-                                {plan.popular && <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />}
-                            </a>
+                            <button className={`w-full py-3 rounded-xl font-bold transition-all ${plan.highlight
+                                ? "bg-neon-cyan text-deep-navy hover:bg-white hover:scale-105 shadow-glow"
+                                : "bg-white/5 text-white hover:bg-white/10 border border-white/5"
+                                }`}>
+                                Empezar Ahora
+                            </button>
                         </motion.div>
                     ))}
                 </div>
-
-                {/* Payment Info */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.4 }}
-                    className="mt-16 text-center glassmorphism max-w-3xl mx-auto p-6 rounded-2xl"
-                >
-                    <div className="grid md:grid-cols-3 gap-4 text-sm text-silver-mist">
-                        <div>
-                            <p className="font-semibold text-white mb-1">💳 Métodos de pago</p>
-                            <p>Transferencia, PayPal, MercadoPago</p>
-                        </div>
-                        <div>
-                            <p className="font-semibold text-white mb-1">📅 Facilidades</p>
-                            <p>Hasta 3 pagos sin intereses</p>
-                        </div>
-                        <div>
-                            <p className="font-semibold text-white mb-1">🛡️ Garantía</p>
-                            <p>15 días o te devolvemos tu dinero</p>
-                        </div>
-                    </div>
-                </motion.div>
             </div>
         </section>
     );

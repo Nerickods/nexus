@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const painPoints = [
     {
@@ -31,8 +32,21 @@ const painPoints = [
 
 export default function ProblemSection() {
     return (
-        <section className="relative py-24 md:py-32 bg-deep-navy">
-            <div className="max-w-7xl mx-auto px-6">
+        <section className="relative py-24 md:py-32 bg-deep-navy overflow-hidden">
+            {/* Background Image Layer */}
+            <div className="absolute inset-0 z-0 opacity-20 mix-blend-color-dodge pointer-events-none">
+                <Image
+                    src="/assets/backgrounds/bg-problem.png"
+                    alt="Digital Chaos"
+                    fill
+                    className="object-cover"
+                    quality={90}
+                />
+            </div>
+            {/* Dark Overlay for readability */}
+            <div className="absolute inset-0 z-0 bg-deep-navy/70 pointer-events-none" />
+
+            <div className="relative z-10 max-w-7xl mx-auto px-6">
                 {/* Section Title */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
@@ -55,7 +69,7 @@ export default function ProblemSection() {
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
                             className="holo-card p-8 rounded-2xl hover:border-electric-blue/50 
-                       hover:-translate-y-2 transition-all duration-300 cursor-default group"
+                       hover:-translate-y-2 transition-all duration-300 cursor-default group backdrop-blur-sm bg-deep-navy/50"
                         >
                             <span className="text-5xl mb-6 block filter drop-shadow-glow">{point.emoji}</span>
                             <h3 className="text-xl font-display font-bold mb-4 text-white group-hover:text-electric-blue transition-colors">

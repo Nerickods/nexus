@@ -1,151 +1,105 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Calendar, Check, AlertTriangle, Cpu } from "lucide-react";
-
-import ContactForm from "./ContactForm";
+import { Send, Zap, MessageSquare } from "lucide-react";
+import Image from "next/image";
 
 export default function CTASection() {
     return (
-        <section id="cta" className="relative py-24 md:py-32 overflow-hidden bg-deep-navy">
-            {/* Background Reactor Core Effect */}
-            <div className="absolute inset-0 z-0 pointer-events-none">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-electric-blue/10 rounded-full blur-[100px] animate-pulse-glow mix-blend-screen" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-cyber-purple/20 rounded-full blur-[80px] mix-blend-screen" />
-                {/* Grid Overlay */}
-                <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10 bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
+        <section id="cta" className="relative py-32 bg-deep-navy overflow-hidden flex items-center justify-center">
+            {/* Background Image Layer */}
+            <div className="absolute inset-0 z-0 opacity-25 mix-blend-screen pointer-events-none">
+                <Image
+                    src="/assets/backgrounds/bg-cta.png"
+                    alt="Warp Speed Action"
+                    fill
+                    className="object-cover"
+                    quality={90}
+                />
             </div>
 
-            <div className="relative z-10 max-w-7xl mx-auto px-6">
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
-                    {/* Left Column - Content */}
+            {/* Reactor Core Effect */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-electric-blue/20 rounded-full blur-[100px] animate-pulse-glow" />
+
+            {/* Overlay for form visibility */}
+            <div className="absolute inset-0 bg-deep-navy/40 pointer-events-none" />
+
+            <div className="relative z-10 max-w-4xl mx-auto px-6 w-full text-center">
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    className="mb-12"
+                >
+                    <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white text-shadow-glow">
+                        ¿Listo Para Conectar Tu Negocio <span className="text-gradient">Con El Futuro</span>?
+                    </h2>
+                    <p className="text-xl text-silver-mist max-w-2xl mx-auto">
+                        Agenda una consulta gratuita de 15 minutos. Sin ventas agresivas.
+                        Solo estrategia pura para ver si somos el match correcto.
+                    </p>
+                </motion.div>
+
+                <div className="grid md:grid-cols-2 gap-8 items-stretch">
+                    {/* Holo Terminal Style Form */}
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
+                        className="bg-[#0a0f1c]/90 border border-electric-blue/30 rounded-2xl p-8 text-left shadow-2xl relative overflow-hidden backdrop-blur-md"
                     >
-                        {/* Headline */}
-                        <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 leading-tight">
-                            ¿Listo Para Conectar
-                            <br />
-                            Tu Negocio Con El <span className="text-gradient">Futuro</span>?
-                        </h2>
+                        {/* Scanline Effect */}
+                        <div className="absolute inset-0 bg-scanline opacity-5 pointer-events-none" />
 
-                        {/* Body */}
-                        <p className="text-lg md:text-xl text-silver-mist mb-6 font-body">
-                            El mejor momento para empezar fue hace 5 años.
-                            <br />
-                            El segundo mejor momento es <span className="text-warning-amber font-bold">AHORA</span>.
-                        </p>
-
-                        <p className="text-base md:text-lg text-silver-mist mb-8 border-l-2 border-electric-blue pl-4">
-                            Agenda una llamada gratuita de 30 minutos.
-                        </p>
-
-                        {/* Benefits Checklist with Holo-Checks */}
-                        <ul className="space-y-4 mb-8">
-                            {[
-                                "Analizamos tu situación actual",
-                                "Identificamos oportunidades de automatización",
-                                "Te mostramos cómo la IA puede ayudar a TU negocio",
-                                "Sin compromiso, sin presión, solo valor",
-                            ].map((item, index) => (
-                                <motion.li
-                                    key={index}
-                                    initial={{ opacity: 0, x: -20 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: index * 0.1 }}
-                                    className="flex items-start gap-4"
-                                >
-                                    <div className="w-6 h-6 rounded-full bg-success-green/10 border border-success-green/40 flex items-center justify-center flex-shrink-0 mt-0.5 shadow-[0_0_10px_rgba(0,200,83,0.2)]">
-                                        <Check className="w-3.5 h-3.5 text-success-green" />
-                                    </div>
-                                    <span className="text-base md:text-lg text-white font-medium">{item}</span>
-                                </motion.li>
-                            ))}
-                        </ul>
-
-                        {/* No Tech Needed - Holo Card */}
-                        <div className="flex items-center gap-4 text-silver-mist italic mb-8 holo-card p-5 rounded-xl border border-electric-blue/20">
-                            <div className="p-2 bg-electric-blue/10 rounded-lg">
-                                <Cpu className="w-6 h-6 text-electric-blue" />
-                            </div>
-                            <p>
-                                No necesitas saber de tecnología.
-                                <br />
-                                <span className="text-white font-semibold not-italic text-gradient">Para eso estamos nosotros.</span>
-                            </p>
+                        <div className="flex items-center gap-2 mb-6 border-b border-white/10 pb-4">
+                            <div className="w-3 h-3 rounded-full bg-red-500" />
+                            <div className="w-3 h-3 rounded-full bg-yellow-500" />
+                            <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
+                            <span className="ml-auto font-mono text-xs text-electric-blue">SECURE_CHANNEL_v1.2</span>
                         </div>
 
-                        {/* Urgency Badge - Reactor Style */}
-                        <motion.div
-                            animate={{ opacity: [0.9, 1, 0.9], scale: [0.99, 1, 0.99] }}
-                            transition={{ duration: 3, repeat: Infinity }}
-                            className="inline-flex items-center gap-3 px-6 py-4 bg-warning-amber/5 border border-warning-amber/30 rounded-xl shadow-[0_0_20px_rgba(255,149,0,0.15)] relative overflow-hidden group"
-                        >
-                            <div className="absolute inset-0 bg-warning-amber/5 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
-                            <AlertTriangle className="w-6 h-6 text-warning-amber flex-shrink-0 relative z-10" />
-                            <p className="text-sm md:text-base text-warning-amber relative z-10">
-                                <span className="font-bold">Solo 10 espacios disponibles</span> este mes
-                                <br className="hidden md:block" />
-                                para nuevos proyectos con precio de lanzamiento.
-                            </p>
-                        </motion.div>
+                        <form className="space-y-4 relative z-10">
+                            <div>
+                                <label className="block text-silver-mist text-sm font-mono mb-2">IDENTIFIER_NAME</label>
+                                <input type="text" className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:border-electric-blue focus:ring-1 focus:ring-electric-blue outline-none transition-all placeholder:text-white/20" placeholder="John Doe" />
+                            </div>
+                            <div>
+                                <label className="block text-silver-mist text-sm font-mono mb-2">COMM_CHANNEL (Email)</label>
+                                <input type="email" className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:border-electric-blue focus:ring-1 focus:ring-electric-blue outline-none transition-all placeholder:text-white/20" placeholder="john@company.com" />
+                            </div>
+                            <div>
+                                <label className="block text-silver-mist text-sm font-mono mb-2">TARGET_OBJECTIVE</label>
+                                <select className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:border-electric-blue focus:ring-1 focus:ring-electric-blue outline-none transition-all">
+                                    <option className="bg-deep-navy">One-Page Website</option>
+                                    <option className="bg-deep-navy">Chatbot IA</option>
+                                    <option className="bg-deep-navy">Automatización</option>
+                                    <option className="bg-deep-navy">Consultoría General</option>
+                                </select>
+                            </div>
+                            <button className="w-full bg-gradient-cta hover:shadow-glow-strong text-white font-bold py-4 rounded-xl mt-4 flex items-center justify-center gap-2 group transition-all transform active:scale-95">
+                                INICIAR TRANSMISIÓN <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                            </button>
+                        </form>
                     </motion.div>
 
-                    {/* Right Column - Calendly */}
+                    {/* Floating Stats Card - Glassmorphism */}
                     <motion.div
                         initial={{ opacity: 0, x: 50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                        className="relative"
+                        className="flex flex-col justify-center gap-6"
                     >
-                        {/* Calendly Container - Holo Terminal Style */}
-                        <div className="relative rounded-3xl overflow-hidden glass-panel border border-electric-blue/30 shadow-2xl">
-                            {/* Terminal Header */}
-                            <div className="bg-deep-navy/90 p-4 border-b border-white/10 flex items-center justify-between">
-                                <div className="flex items-center gap-2">
-                                    <div className="flex gap-1.5">
-                                        <div className="w-3 h-3 rounded-full bg-red-500/50" />
-                                        <div className="w-3 h-3 rounded-full bg-amber-500/50" />
-                                        <div className="w-3 h-3 rounded-full bg-green-500/50" />
-                                    </div>
-                                    <span className="ml-3 text-xs text-silver-mist font-mono">booking_system.exe</span>
-                                </div>
-                                <div className="text-xs text-electric-blue font-mono animate-pulse">● LIVE</div>
-                            </div>
-
-                            {/* Embed Area */}
-                            <div className="p-1 bg-[#FFFFFF] min-h-[600px] flex flex-col items-center justify-center relative">
-                                {/* Instructions Placeholder */}
-                                <div className="text-center w-full h-full flex items-center justify-center p-4">
-                                    <ContactForm />
-                                </div>
-                            </div>
+                        <div className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md hover:border-neon-cyan/30 transition-colors">
+                            <Zap className="w-8 h-8 text-warning-amber mb-4" />
+                            <h3 className="text-xl font-bold text-white mb-2">Velocidad Extrema</h3>
+                            <p className="text-silver-mist text-sm">Entregables funcionales en días, no meses. Tu competencia sigue planeando mientras tú ya estás vendiendo.</p>
                         </div>
 
-                        {/* Floating Stats */}
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.8 }}
-                            className="absolute -bottom-6 -left-6 glassmorphism p-4 rounded-lg hidden lg:block border border-success-green/30"
-                        >
-                            <div className="flex items-center gap-3">
-                                <span className="relative flex h-3 w-3">
-                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-success-green opacity-75"></span>
-                                    <span className="relative inline-flex rounded-full h-3 w-3 bg-success-green"></span>
-                                </span>
-                                <div>
-                                    <p className="text-sm font-semibold mb-0.5 text-white">Respuesta Rápida</p>
-                                    <p className="text-xs text-silver-mist">Menos de 24 horas</p>
-                                </div>
-                            </div>
-                        </motion.div>
+                        <div className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md hover:border-electric-blue/30 transition-colors">
+                            <MessageSquare className="w-8 h-8 text-neon-cyan mb-4" />
+                            <h3 className="text-xl font-bold text-white mb-2">Soporte Directo</h3>
+                            <p className="text-silver-mist text-sm">Hablas con ingenieros, no con vendedores. Comunicación directa por WhatsApp durante todo el proyecto.</p>
+                        </div>
                     </motion.div>
                 </div>
             </div>

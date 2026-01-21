@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowDown, Rocket, Sparkles, Terminal, Activity, ShieldCheck } from "lucide-react";
+import Image from "next/image";
 
 export default function HeroSection() {
     return (
@@ -10,6 +11,18 @@ export default function HeroSection() {
             <div className="absolute inset-0 z-0">
                 {/* Dynamic Background Gradient */}
                 <div className="absolute inset-0 bg-gradient-hero animate-pulse-glow opacity-80" />
+
+                {/* New Contextual Background Texture */}
+                <div className="absolute inset-0 z-0 opacity-40 mix-blend-overlay">
+                    <Image
+                        src="/assets/backgrounds/bg-hero-texture.png"
+                        alt="Deep space nebula texture"
+                        fill
+                        className="object-cover"
+                        priority
+                        quality={90}
+                    />
+                </div>
 
                 {/* Abstract Grid Floor (Cyber Landscape) */}
                 <div
@@ -158,3 +171,4 @@ export default function HeroSection() {
         </section>
     );
 }
+

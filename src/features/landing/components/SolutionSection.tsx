@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Palette, Bot, Zap, Check } from "lucide-react";
+import Image from "next/image";
 
 const pillars = [
     {
@@ -41,8 +42,22 @@ const pillars = [
 
 export default function SolutionSection() {
     return (
-        <section className="relative py-24 md:py-32 bg-deep-navy">
-            <div className="max-w-7xl mx-auto px-6">
+        <section className="relative py-24 md:py-32 bg-deep-navy overflow-hidden">
+            {/* Background Image Layer */}
+            <div className="absolute inset-0 z-0 opacity-15 mix-blend-screen pointer-events-none">
+                <Image
+                    src="/assets/backgrounds/bg-solution.png"
+                    alt="Architectural Order"
+                    fill
+                    className="object-cover"
+                    quality={90}
+                />
+            </div>
+            {/* Deepening Gradient */}
+            <div className="absolute inset-0 z-0 bg-gradient-to-b from-deep-navy via-deep-navy/80 to-deep-navy pointer-events-none" />
+
+
+            <div className="relative z-10 max-w-7xl mx-auto px-6">
                 {/* Logo Badge */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.8 }}
@@ -92,7 +107,7 @@ export default function SolutionSection() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.15 }}
-                            className="relative p-8 rounded-3xl holo-card group"
+                            className="relative p-8 rounded-3xl holo-card group backdrop-blur-md bg-deep-navy/50"
                         >
                             <div className="w-16 h-16 rounded-2xl bg-electric-blue/10 border border-electric-blue/20 flex items-center justify-center mb-6 group-hover:shadow-[0_0_20px_rgba(0,102,255,0.3)] transition-all">
                                 <pillar.icon className="w-8 h-8 text-electric-blue group-hover:text-neon-cyan transition-colors" />

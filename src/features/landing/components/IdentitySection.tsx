@@ -1,129 +1,121 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Target, Lightbulb, Compass } from "lucide-react";
+import { Cpu, Users, Code, Target } from "lucide-react";
+import Image from "next/image";
 
 export default function IdentitySection() {
   return (
-    <section className="relative py-24 bg-deep-navy overflow-hidden">
-      {/* Decorative Elements */}
-      <div className="absolute top-0 left-0 w-64 h-64 bg-electric-blue/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-      <div className="absolute bottom-0 right-0 w-64 h-64 bg-cyber-purple/5 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
+    <section id="identity" className="relative py-24 bg-deep-navy overflow-hidden">
+      {/* Background Image Layer */}
+      <div className="absolute inset-0 z-0 opacity-15 mix-blend-color-dodge pointer-events-none">
+        <Image
+          src="/assets/backgrounds/bg-identity.png"
+          alt="Digital DNA"
+          fill
+          className="object-cover"
+          quality={90}
+        />
+      </div>
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-r from-deep-navy/90 to-deep-navy/50 pointer-events-none" />
 
-      <div className="relative max-w-7xl mx-auto px-6">
+      {/* Decorative Blurred Circles */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-electric-blue/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-cyber-purple/5 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-
-          {/* Left Column: Narrative */}
+          {/* Text Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="space-y-8"
           >
-            <div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                No Somos Solo Programadores.
-                <br />
-                <span className="text-gradient">Somos Arquitectos del Futuro.</span>
-              </h2>
-              <div className="h-1 w-20 bg-gradient-to-r from-electric-blue to-cyber-purple rounded-full" />
-            </div>
-
-            <p className="text-lg text-silver-mist leading-relaxed">
-              En NEXUS.AI, creemos que la Inteligencia Artificial no debería ser un privilegio de las grandes corporaciones. Es la herramienta más poderosa de nuestra era, y nuestra obsesión es ponerla en manos de quienes mueven la economía real: los emprendedores.
+            <span className="text-neon-cyan font-mono text-sm tracking-widest uppercase mb-4 block">
+                            // Quiénes Somos
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+              No Somos Solo Programadores.
+              <br />
+              Somos <span className="text-gradient">Arquitectos del Futuro</span>.
+            </h2>
+            <p className="text-lg text-silver-mist mb-6 leading-relaxed">
+              NEXUS.AI nació de una frustración: ver cómo negocios increíbles se
+              quedaban atrás por no entender la tecnología.
+            </p>
+            <p className="text-lg text-silver-mist mb-8 leading-relaxed">
+              No somos una agencia de marketing tradicional que solo quiere
+              venderte posts en Instagram. Somos ingenieros y estrategas
+              obsesionados con la <span className="text-white font-semibold">eficiencia</span> y
+              el <span className="text-white font-semibold">crecimiento escalable</span>.
             </p>
 
-            {/* Mision / Vision / Objetivo Cards */}
-            <div className="space-y-6">
+            <div className="grid grid-cols-2 gap-6">
               {[
-                {
-                  icon: Target,
-                  title: "Nuestra Misión",
-                  text: "Democratizar el acceso a tecnologías de automatización de élite para PyMEs latinoamericanas."
-                },
-                {
-                  icon: Compass,
-                  title: "Nuestra Visión",
-                  text: "Un futuro donde ningún negocio fracasa por falta de adaptación tecnológica, sino que prospera gracias a ella."
-                },
-                {
-                  icon: Lightbulb,
-                  title: "Objetivo Central",
-                  text: "Transformar 1,000 negocios tradicionales en potencias digitales automatizadas para 2026."
-                }
+                { icon: Code, label: "Código Limpio", sub: "Scalable Tech" },
+                { icon: Users, label: "Centrado en Usuario", sub: "UX/UI Design" },
+                { icon: Cpu, label: "IA Nativa", sub: "Machine Learning" },
+                { icon: Target, label: "Resultados", sub: "Data Driven" },
               ].map((item, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="flex gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors border border-transparent hover:border-white/5"
+                  transition={{ delay: 0.2 + index * 0.1 }}
+                  className="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-electric-blue/30 transition-colors"
                 >
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-electric-blue/20 to-cyber-purple/20 flex items-center justify-center">
-                      <item.icon className="w-6 h-6 text-neon-cyan" />
-                    </div>
-                  </div>
+                  <item.icon className="w-8 h-8 text-electric-blue" />
                   <div>
-                    <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-                    <p className="text-silver-mist text-sm leading-relaxed">{item.text}</p>
+                    <h4 className="font-bold text-white text-sm">{item.label}</h4>
+                    <p className="text-xs text-silver-mist font-mono opacity-70">{item.sub}</p>
                   </div>
                 </motion.div>
               ))}
             </div>
           </motion.div>
 
-          {/* Right Column: Visual Concept */}
+          {/* Visual Element - Glass Card */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             className="relative"
           >
-            {/* Abstract Graphic Representation */}
-            <div className="relative aspect-square md:aspect-[4/5] glassmorphism rounded-3xl overflow-hidden p-8 flex flex-col justify-between border-t border-white/10">
-
-              {/* Top content */}
-              <div className="space-y-4">
-                <div className="flex justify-between items-center opacity-50">
-                  <div className="flex gap-2">
-                    <div className="w-3 h-3 rounded-full bg-red-500" />
-                    <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                    <div className="w-3 h-3 rounded-full bg-green-500" />
-                  </div>
-                  <div className="text-xs font-mono">nexus_core.sys</div>
+            <div className="relative z-10 bg-gradient-to-br from-white/10 to-transparent p-1 rounded-3xl backdrop-blur-xl border border-white/20 shadow-2xl">
+              <div className="bg-[#0a0f1c]/80 rounded-[22px] p-8 h-[500px] flex flex-col items-center justify-center text-center relative overflow-hidden">
+                {/* Abstract Graphic */}
+                <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20 bg-center" />
+                <div className="w-32 h-32 rounded-full border-4 border-electric-blue/30 flex items-center justify-center mb-8 relative">
+                  <div className="absolute inset-0 border-4 border-t-neon-cyan border-r-transparent border-b-transparent border-l-transparent rounded-full animate-spin" />
+                  <Cpu className="w-12 h-12 text-white" />
                 </div>
-                <div className="space-y-2 font-mono text-xs md:text-sm text-neon-cyan/80">
-                  <p>{`> Initializing protocol...`}</p>
-                  <p>{`> Loading mission parameters... [OK]`}</p>
-                  <p>{`> Target: EMPATHY && EFFICIENCY`}</p>
-                  <p>{`> Status: READY_TO_DEPLOY`}</p>
-                </div>
-              </div>
 
-              {/* Center Abstract Art */}
-              <div className="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none">
-                <div className="w-64 h-64 border border-electric-blue/30 rounded-full animate-[spin_10s_linear_infinite]" />
-                <div className="w-48 h-48 border border-cyber-purple/30 rounded-full animate-[spin_15s_linear_infinite_reverse]" />
-                <div className="w-32 h-32 border border-neon-cyan/30 rounded-full animate-[spin_20s_linear_infinite]" />
-              </div>
-
-              {/* Bottom Quote */}
-              <div className="relative z-10 glassmorphism p-6 rounded-xl border border-white/5 bg-deep-navy/50">
-                <p className="text-lg font-light italic text-white mb-4">
-                  &quot;La tecnología por sí sola no es la respuesta. La respuesta es lo que la tecnología te libera para hacer: <span className="text-warning-amber font-semibold not-italic">Crear. Conectar. Crecer.</span>&quot;
+                <h3 className="text-2xl font-bold text-white mb-2">Nuestra Misión</h3>
+                <p className="text-silver-mist mb-8 max-w-sm">
+                  Democratizar el acceso a la Inteligencia Artificial para que
+                  ningún negocio se quede obsoleto.
                 </p>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-r from-electric-blue to-cyber-purple" />
-                  <div>
-                    <p className="font-bold text-sm">Equipo NEXUS.AI</p>
-                    <p className="text-xs text-silver-mist">Tus Partners Tecnológicos</p>
+
+                <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mb-8" />
+
+                <div className="flex gap-4">
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-gradient font-display">100%</div>
+                    <div className="text-xs text-silver-mist font-mono mt-1">COMPROMISO</div>
+                  </div>
+                  <div className="w-px h-12 bg-white/10" />
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-gradient font-display">24/7</div>
+                    <div className="text-xs text-silver-mist font-mono mt-1">MONITOREO</div>
                   </div>
                 </div>
               </div>
-
             </div>
+
+            {/* Back Glow */}
+            <div className="absolute -inset-4 bg-gradient-to-r from-electric-blue to-cyber-purple opacity-20 blur-xl rounded-[40px] -z-10" />
           </motion.div>
         </div>
       </div>

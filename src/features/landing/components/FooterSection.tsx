@@ -1,6 +1,7 @@
 "use client";
 
 import { Globe, MessageSquare, Cog, Code, Linkedin, Instagram, Twitter, Mail, Phone, MapPin } from "lucide-react";
+import Image from "next/image";
 
 const services = [
     { icon: Globe, label: "Landing Pages" },
@@ -17,8 +18,21 @@ const socials = [
 
 export default function FooterSection() {
     return (
-        <footer className="relative bg-deep-navy border-t border-white/10">
-            <div className="max-w-7xl mx-auto px-6 py-16">
+        <footer className="relative bg-deep-navy border-t border-white/10 overflow-hidden">
+            {/* Background Image Layer */}
+            <div className="absolute inset-0 z-0 opacity-10 mix-blend-multiply pointer-events-none">
+                <Image
+                    src="/assets/backgrounds/bg-footer.png"
+                    alt="Footer Network"
+                    fill
+                    className="object-cover"
+                    quality={90}
+                />
+            </div>
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-deep-navy/90 pointer-events-none" />
+
+            <div className="relative z-10 max-w-7xl mx-auto px-6 py-16">
                 <div className="grid md:grid-cols-4 gap-12">
                     {/* Logo & Description */}
                     <div className="md:col-span-1">
@@ -31,7 +45,7 @@ export default function FooterSection() {
 
                     {/* Services */}
                     <div>
-                        <h4 className="font-semibold mb-4">Servicios</h4>
+                        <h4 className="font-semibold mb-4 text-white">Servicios</h4>
                         <ul className="space-y-3">
                             {services.map((service, index) => (
                                 <li key={index}>
@@ -49,7 +63,7 @@ export default function FooterSection() {
 
                     {/* Contact */}
                     <div>
-                        <h4 className="font-semibold mb-4">Contacto</h4>
+                        <h4 className="font-semibold mb-4 text-white">Contacto</h4>
                         <ul className="space-y-3">
                             <li>
                                 <a
@@ -80,7 +94,7 @@ export default function FooterSection() {
 
                     {/* Social */}
                     <div>
-                        <h4 className="font-semibold mb-4">Síguenos</h4>
+                        <h4 className="font-semibold mb-4 text-white">Síguenos</h4>
                         <div className="flex gap-3">
                             {socials.map((social, index) => (
                                 <a
@@ -88,7 +102,7 @@ export default function FooterSection() {
                                     href={social.href}
                                     aria-label={social.label}
                                     className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center
-                           hover:bg-electric-blue transition-colors"
+                           hover:bg-electric-blue transition-colors text-white"
                                 >
                                     <social.icon className="w-5 h-5" />
                                 </a>
