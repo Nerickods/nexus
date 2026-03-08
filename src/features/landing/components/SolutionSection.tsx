@@ -1,10 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Palette, Bot, Zap, Check } from "lucide-react";
+import { Palette, Bot, Zap, CheckCircle, BrainCircuit, Rocket, ShieldCheck } from "lucide-react";
 import Image from "next/image";
+import { GlassCard } from "@/shared/components/GlassCard";
 
-const pillars = [
+const solutionPillars = [
     {
         icon: Palette,
         title: "Presencia Digital Premium",
@@ -42,20 +43,39 @@ const pillars = [
 
 export default function SolutionSection() {
     return (
-        <section className="relative py-24 md:py-32 bg-deep-navy overflow-hidden">
+        <section className="relative py-24 md:py-32 bg-white dark:bg-deep-navy overflow-hidden transition-colors duration-700">
             {/* Background Image Layer */}
-            <div className="absolute inset-0 z-0 opacity-15 mix-blend-screen pointer-events-none">
-                <Image
-                    src="/assets/backgrounds/bg-solution.png"
-                    alt="Architectural Order"
-                    fill
-                    className="object-cover"
-                    quality={90}
-                />
+            <div className="absolute inset-0 z-0">
+                {/* Dark Mode Texture */}
+                <div className="absolute inset-0 z-0 opacity-0 dark:opacity-40 mix-blend-screen transition-opacity duration-700">
+                    <Image
+                        src="/assets/backgrounds/bg-solution.png"
+                        alt="Solution Architecture"
+                        fill
+                        className="object-cover"
+                        quality={90}
+                    />
+                </div>
+                {/* Light Mode Texture */}
+                <div className="absolute inset-0 z-0 opacity-40 dark:opacity-0 mix-blend-screen transition-opacity duration-700">
+                    <Image
+                        src="/assets/backgrounds/bg-solution-light.png"
+                        alt="Solution Architecture Light"
+                        fill
+                        className="object-cover"
+                        quality={90}
+                    />
+                </div>
             </div>
-            {/* Deepening Gradient */}
-            <div className="absolute inset-0 z-0 bg-gradient-to-b from-deep-navy via-deep-navy/80 to-deep-navy pointer-events-none" />
 
+            {/* Dark Overlay for readability - Radial Gradient */}
+            <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top,transparent_0%,#ffffff_100%)] dark:bg-[radial-gradient(circle_at_top,transparent_0%,#0A0F1C_100%)] pointer-events-none transition-all duration-700" />
+
+            {/* Top Transition Gradient */}
+            <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-white to-transparent dark:from-deep-navy dark:to-transparent z-10 pointer-events-none transition-colors duration-700" />
+
+            {/* Bottom Transition Gradient */}
+            <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-white via-white/80 to-transparent dark:from-deep-navy dark:via-deep-navy/80 to-transparent z-10 pointer-events-none transition-colors duration-700" />
 
             <div className="relative z-10 max-w-7xl mx-auto px-6">
                 {/* Logo Badge */}
@@ -78,7 +98,7 @@ export default function SolutionSection() {
                     >
                         NEXUS.AI
                     </motion.h2>
-                    <p className="text-xl md:text-2xl text-silver-mist mt-2">
+                    <p className="text-xl md:text-2xl text-slate-600 dark:text-silver-mist mt-2 transition-colors duration-700">
                         Conectamos Tu Negocio Con El Futuro
                     </p>
                 </motion.div>
@@ -88,42 +108,43 @@ export default function SolutionSection() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center text-lg md:text-xl text-silver-mist max-w-3xl mx-auto mb-16"
+                    className="text-center text-lg md:text-xl text-slate-600 dark:text-silver-mist max-w-3xl mx-auto mb-16 transition-colors duration-700"
                 >
                     Somos especialistas en traducir el poder de la Inteligencia Artificial
                     a soluciones prácticas para tu negocio.
                     <br />
-                    <span className="text-white font-semibold">
+                    <span className="text-deep-navy dark:text-white font-semibold transition-colors duration-700">
                         Sin importar tu industria. Sin importar tu nivel técnico.
                     </span>
                 </motion.p>
 
                 {/* Pillars */}
                 <div className="grid md:grid-cols-3 gap-8 mb-20">
-                    {pillars.map((pillar, index) => (
+                    {solutionPillars.map((pillar, index) => (
                         <motion.div
                             key={index}
                             initial={{ opacity: 0, y: 40 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.15 }}
-                            className="relative p-8 rounded-3xl holo-card group backdrop-blur-md bg-deep-navy/50"
                         >
-                            <div className="w-16 h-16 rounded-2xl bg-electric-blue/10 border border-electric-blue/20 flex items-center justify-center mb-6 group-hover:shadow-[0_0_20px_rgba(0,102,255,0.3)] transition-all">
-                                <pillar.icon className="w-8 h-8 text-electric-blue group-hover:text-neon-cyan transition-colors" />
-                            </div>
+                            <GlassCard variant="holographic" className="h-full bg-gray-100/50 dark:bg-white/5" hoverEffect>
+                                <div className="w-16 h-16 rounded-2xl bg-electric-blue/10 border border-electric-blue/20 flex items-center justify-center mb-6 group-hover:shadow-[0_0_20px_rgba(0,102,255,0.3)] transition-all">
+                                    <pillar.icon className="w-8 h-8 text-electric-blue group-hover:text-neon-cyan transition-colors" />
+                                </div>
 
-                            <h3 className="text-2xl font-display font-bold mb-4 text-white group-hover:text-electric-blue transition-colors">{pillar.title}</h3>
-                            <p className="text-silver-mist mb-6 font-body leading-relaxed">{pillar.description}</p>
+                                <h3 className="text-2xl font-display font-bold mb-4 text-deep-navy dark:text-white group-hover:text-electric-blue transition-colors duration-700">{pillar.title}</h3>
+                                <p className="text-slate-600 dark:text-silver-mist mb-6 font-body leading-relaxed transition-colors duration-700">{pillar.description}</p>
 
-                            <ul className="space-y-3">
-                                {pillar.features.map((feature, i) => (
-                                    <li key={i} className="flex items-center gap-3">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-neon-cyan/50" />
-                                        <span className="text-sm text-silver-mist group-hover:text-white transition-colors">{feature}</span>
-                                    </li>
-                                ))}
-                            </ul>
+                                <ul className="space-y-3">
+                                    {pillar.features.map((feature, i) => (
+                                        <li key={i} className="flex items-center gap-3">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-electric-blue/50 dark:bg-neon-cyan/50 transition-colors duration-700" />
+                                            <span className="text-sm text-slate-600 dark:text-silver-mist group-hover:text-deep-navy dark:group-hover:text-white transition-colors duration-700">{feature}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </GlassCard>
                         </motion.div>
                     ))}
                 </div>
@@ -140,24 +161,24 @@ export default function SolutionSection() {
                         &quot;
                     </span>
 
-                    <h3 className="text-2xl font-bold mb-6">¿Qué nos hace diferentes?</h3>
+                    <h3 className="text-2xl font-bold mb-6 text-deep-navy dark:text-white transition-colors duration-700">¿Qué nos hace diferentes?</h3>
 
-                    <p className="text-lg text-silver-mist mb-6">
-                        Llevamos <span className="text-neon-cyan font-semibold">+2 años</span>{" "}
+                    <p className="text-lg text-slate-600 dark:text-silver-mist mb-6 transition-colors duration-700">
+                        Llevamos <span className="text-electric-blue dark:text-neon-cyan font-semibold transition-colors duration-700">+2 años</span>{" "}
                         perfeccionando el arte de adaptar tecnología de punta a negocios reales.
                     </p>
 
-                    <p className="text-xl font-semibold text-white mb-4">
+                    <p className="text-xl font-semibold text-deep-navy dark:text-white mb-4 transition-colors duration-700">
                         No vendemos plantillas genéricas.
                         <br />
                         Construimos soluciones a <span className="text-warning-amber">TU</span> medida.
                     </p>
 
-                    <p className="text-silver-mist">
+                    <p className="text-slate-600 dark:text-silver-mist transition-colors duration-700">
                         Desde los colores de tu marca hasta la voz de tu chatbot.
                         <br />
                         Todo es diseñado para que se sienta{" "}
-                        <span className="text-neon-cyan font-semibold">100% TUYO</span>.
+                        <span className="text-electric-blue dark:text-neon-cyan font-semibold transition-colors duration-700">100% TUYO</span>.
                     </p>
                 </motion.div>
             </div>

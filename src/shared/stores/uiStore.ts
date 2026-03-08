@@ -1,15 +1,51 @@
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
+
+type Theme = 'light' | 'dark';
 
 interface UIState {
-    isBookingModalOpen: boolean;
-    openBookingModal: () => void;
-    closeBookingModal: () => void;
-    toggleBookingModal: () => void;
+    theme: Theme;
+    toggleTheme: () => void;
+    setTheme: (theme: Theme) => void;
+    isMenuOpen: boolean;
+    toggleMenu: () => void;
+    closeMenu: () => void;
 }
 
-export const useUIStore = create<UIState>((set) => ({
-    isBookingModalOpen: false,
-    openBookingModal: () => set({ isBookingModalOpen: true }),
-    closeBookingModal: () => set({ isBookingModalOpen: false }),
-    toggleBookingModal: () => set((state) => ({ isBookingModalOpen: !state.isBookingModalOpen })),
-}));
+export const useUIStore = create<UIState>()(
+    persist(
+        (set) => ({
+            theme: 'dark', // Default to dark
+            toggleTheme: () =>
+                set((state) => {
+                    const newTheme = state.theme === 'light' ? 'dark' : 'light';
+                    // Side effect to update DOM immediately
+                    if (typeof window !== 'undefined') {
+                        if (newTheme === 'dark') {
+                            document.documentElement.classList.add('dark');
+                        } else {
+                            document.documentElement.classList.remove('dark');
+                        }
+                    }
+                    return { theme: newTheme };
+                }),
+            setTheme: (theme) => {
+                set({ theme });
+                if (typeof window !== 'undefined') {
+                    if (theme === 'dark') {
+                        document.documentElement.classList.add('dark');
+                    } else {
+                        document.documentElement.classList.remove('dark');
+                    }
+                }
+            },
+            isMenuOpen: false,
+            toggleMenu: () => set((state) => ({ isMenuOpen: !state.isMenuOpen })),
+            closeMenu: () => set({ isMenuOpen: false }),
+        }),
+        {
+            name: 'ui-storage',
+            partialize: (state) => ({ theme: state.theme }), // Only persist theme
+        }
+    )
+);

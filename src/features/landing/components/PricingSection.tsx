@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import { Check, Star } from "lucide-react";
 import Image from "next/image";
+import { GlassCard } from "@/shared/components/GlassCard";
+import { LiquidButton } from "@/shared/components/LiquidButton";
 
 const plans = [
     {
@@ -50,7 +52,7 @@ const plans = [
 
 export default function PricingSection() {
     return (
-        <section id="pricing" className="relative py-24 bg-deep-navy overflow-hidden">
+        <section id="pricing" className="relative py-24 bg-gray-100 dark:bg-deep-navy overflow-hidden transition-colors duration-700">
             {/* Background Image Layer */}
             <div className="absolute inset-0 z-0 opacity-15 mix-blend-overlay pointer-events-none">
                 <Image
@@ -62,7 +64,7 @@ export default function PricingSection() {
                 />
             </div>
             {/* Gradient Overlay */}
-            <div className="absolute inset-0 z-0 bg-gradient-to-t from-deep-navy via-deep-navy/90 to-deep-navy/50 pointer-events-none" />
+            <div className="absolute inset-0 z-0 bg-gradient-to-t from-gray-100 via-gray-100/90 to-gray-100/50 dark:from-deep-navy dark:via-deep-navy/90 dark:to-deep-navy/50 pointer-events-none transition-colors duration-700" />
 
 
             <div className="relative z-10 max-w-7xl mx-auto px-6">
@@ -72,10 +74,10 @@ export default function PricingSection() {
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                    <h2 className="text-4xl md:text-5xl font-bold text-deep-navy dark:text-white mb-6 transition-colors duration-700">
                         Precios <span className="text-gradient">Transparentes</span>
                     </h2>
-                    <p className="text-silver-mist text-lg max-w-2xl mx-auto">
+                    <p className="text-slate-600 dark:text-silver-mist text-lg max-w-2xl mx-auto transition-colors duration-700">
                         Sin costos ocultos ni mensualidades forzosas. Inversión única para resultados continuos.
                     </p>
                 </motion.div>
@@ -85,13 +87,14 @@ export default function PricingSection() {
                     initial={{ opacity: 0, y: -20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="bg-electric-blue/10 border border-electric-blue/30 rounded-2xl p-4 mb-12 max-w-3xl mx-auto text-center backdrop-blur-sm"
                 >
-                    <p className="text-neon-cyan font-semibold flex items-center justify-center gap-2">
-                        <Star className="w-5 h-5 fill-neon-cyan" />
-                        OFERTA DE LANZAMIENTO NEXUS.AI:
-                        <span className="text-white font-normal">15% de descuento en todos los servicios durante el mes de lanzamiento.</span>
-                    </p>
+                    <GlassCard variant="premium" className="flex items-center justify-center gap-2 mb-12 max-w-3xl mx-auto text-center !p-4 !bg-electric-blue/10 !border-electric-blue/30">
+                        <p className="text-electric-blue dark:text-neon-cyan font-semibold flex items-center justify-center gap-2 flex-wrap transition-colors duration-700">
+                            <Star className="w-5 h-5 fill-electric-blue dark:fill-neon-cyan transition-colors duration-700" />
+                            OFERTA DE LANZAMIENTO NEXUS.AI:
+                            <span className="text-deep-navy dark:text-white font-normal transition-colors duration-700">15% de descuento en todos los servicios durante el mes de lanzamiento.</span>
+                        </p>
+                    </GlassCard>
                 </motion.div>
 
                 <div className="grid md:grid-cols-3 gap-8">
@@ -102,39 +105,41 @@ export default function PricingSection() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.15 }}
-                            className={`p-8 rounded-3xl border relative flex flex-col backdrop-blur-md bg-deep-navy/80 h-full ${plan.highlight
-                                ? "border-neon-cyan/50 shadow-neon bg-deep-navy/60"
-                                : "border-white/10 hover:border-white/20"
-                                }`}
+                            className="h-full"
                         >
-                            {plan.highlight && (
-                                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-neon-cyan text-deep-navy font-bold px-4 py-1 rounded-full text-sm shadow-glow">
-                                    {plan.tag}
+                            <GlassCard
+                                variant={plan.highlight ? "premium" : "basic"}
+                                className={`h-full flex flex-col p-8 ${plan.highlight ? "!bg-white/80 dark:!bg-deep-navy/60 !border-electric-blue/50 dark:!border-neon-cyan/50 shadow-lg dark:shadow-neon" : "!bg-white/60 dark:!bg-deep-navy/80 hover:!border-electric-blue/20 dark:hover:!border-white/20"} transition-colors duration-700`}
+                            >
+                                {plan.highlight && (
+                                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-electric-blue dark:bg-neon-cyan text-white dark:text-deep-navy font-bold px-4 py-1 rounded-full text-sm shadow-lg dark:shadow-glow transition-colors duration-700">
+                                        {plan.tag}
+                                    </div>
+                                )}
+
+                                <h3 className="text-2xl font-bold text-deep-navy dark:text-white mb-2 transition-colors duration-700">{plan.name}</h3>
+                                <div className="text-3xl md:text-4xl font-display font-bold text-electric-blue mb-4">
+                                    {plan.price}
+                                    {plan.price !== "Cotizar" && <span className="text-lg text-slate-500 dark:text-silver-mist font-normal transition-colors duration-700"> mxn</span>}
                                 </div>
-                            )}
+                                <p className="text-slate-600 dark:text-silver-mist text-sm mb-8 transition-colors duration-700">{plan.description}</p>
 
-                            <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
-                            <div className="text-3xl md:text-4xl font-display font-bold text-electric-blue mb-4">
-                                {plan.price}
-                                {plan.price !== "Cotizar" && <span className="text-lg text-silver-mist font-normal"> mxn</span>}
-                            </div>
-                            <p className="text-silver-mist text-sm mb-8">{plan.description}</p>
+                                <ul className="space-y-4 mb-8 flex-grow">
+                                    {plan.features.map((feature, i) => (
+                                        <li key={i} className="flex items-start gap-3">
+                                            <Check className={`w-5 h-5 shrink-0 ${plan.highlight ? "text-electric-blue dark:text-neon-cyan" : "text-electric-blue"} transition-colors duration-700`} />
+                                            <span className="text-sm text-slate-600 dark:text-gray-300 transition-colors duration-700">{feature}</span>
+                                        </li>
+                                    ))}
+                                </ul>
 
-                            <ul className="space-y-4 mb-8 flex-grow">
-                                {plan.features.map((feature, i) => (
-                                    <li key={i} className="flex items-start gap-3">
-                                        <Check className={`w-5 h-5 shrink-0 ${plan.highlight ? "text-neon-cyan" : "text-electric-blue"}`} />
-                                        <span className="text-sm text-gray-300">{feature}</span>
-                                    </li>
-                                ))}
-                            </ul>
-
-                            <button className={`w-full py-3 rounded-xl font-bold transition-all ${plan.highlight
-                                ? "bg-neon-cyan text-deep-navy hover:bg-white hover:scale-105 shadow-glow"
-                                : "bg-white/5 text-white hover:bg-white/10 border border-white/5"
-                                }`}>
-                                Empezar Ahora
-                            </button>
+                                <LiquidButton
+                                    variant={plan.highlight ? "glow" : "secondary"}
+                                    className="w-full"
+                                >
+                                    Empezar Ahora
+                                </LiquidButton>
+                            </GlassCard>
                         </motion.div>
                     ))}
                 </div>
@@ -142,3 +147,4 @@ export default function PricingSection() {
         </section>
     );
 }
+

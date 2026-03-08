@@ -6,19 +6,39 @@ import Image from "next/image";
 
 export default function IdentitySection() {
   return (
-    <section id="identity" className="relative py-24 bg-deep-navy overflow-hidden">
+    <section id="identity" className="relative py-24 bg-white dark:bg-deep-navy overflow-hidden transition-colors duration-700">
       {/* Background Image Layer */}
-      <div className="absolute inset-0 z-0 opacity-15 mix-blend-color-dodge pointer-events-none">
-        <Image
-          src="/assets/backgrounds/bg-identity.png"
-          alt="Digital DNA"
-          fill
-          className="object-cover"
-          quality={90}
-        />
+      <div className="absolute inset-0 z-0">
+        {/* Dark Mode Texture */}
+        <div className="absolute inset-0 z-0 opacity-0 dark:opacity-40 mix-blend-color-dodge transition-opacity duration-700">
+          <Image
+            src="/assets/backgrounds/bg-identity.png"
+            alt="Digital DNA"
+            fill
+            className="object-cover"
+            quality={90}
+          />
+        </div>
+        {/* Light Mode Texture */}
+        <div className="absolute inset-0 z-0 opacity-40 dark:opacity-0 mix-blend-color-dodge transition-opacity duration-700">
+          <Image
+            src="/assets/backgrounds/bg-identity-light.png"
+            alt="Digital DNA Light"
+            fill
+            className="object-cover"
+            quality={90}
+          />
+        </div>
       </div>
+
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-r from-deep-navy/90 to-deep-navy/50 pointer-events-none" />
+      <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_right,transparent_20%,#ffffff_100%)] dark:bg-[radial-gradient(ellipse_at_right,transparent_20%,#0A0F1C_100%)] pointer-events-none transition-all duration-700" />
+
+      {/* Top Transition Gradient */}
+      <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-white to-transparent dark:from-deep-navy dark:to-transparent z-10 pointer-events-none transition-colors duration-700" />
+
+      {/* Bottom Transition Gradient */}
+      <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-white via-white/80 to-transparent dark:from-deep-navy dark:via-deep-navy/80 to-transparent z-10 pointer-events-none transition-colors duration-700" />
 
       {/* Decorative Blurred Circles */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-electric-blue/5 rounded-full blur-[100px] pointer-events-none" />
@@ -32,23 +52,23 @@ export default function IdentitySection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <span className="text-neon-cyan font-mono text-sm tracking-widest uppercase mb-4 block">
+            <span className="text-electric-blue dark:text-neon-cyan font-mono text-sm tracking-widest uppercase mb-4 block">
                             // Quiénes Somos
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+            <h2 className="text-4xl md:text-5xl font-bold text-deep-navy dark:text-white mb-6 leading-tight transition-colors duration-700">
               No Somos Solo Programadores.
               <br />
               Somos <span className="text-gradient">Arquitectos del Futuro</span>.
             </h2>
-            <p className="text-lg text-silver-mist mb-6 leading-relaxed">
+            <p className="text-lg text-slate-600 dark:text-silver-mist mb-6 leading-relaxed transition-colors duration-700">
               NEXUS.AI nació de una frustración: ver cómo negocios increíbles se
               quedaban atrás por no entender la tecnología.
             </p>
-            <p className="text-lg text-silver-mist mb-8 leading-relaxed">
+            <p className="text-lg text-slate-600 dark:text-silver-mist mb-8 leading-relaxed transition-colors duration-700">
               No somos una agencia de marketing tradicional que solo quiere
               venderte posts en Instagram. Somos ingenieros y estrategas
-              obsesionados con la <span className="text-white font-semibold">eficiencia</span> y
-              el <span className="text-white font-semibold">crecimiento escalable</span>.
+              obsesionados con la <span className="text-deep-navy dark:text-white font-semibold">eficiencia</span> y
+              el <span className="text-deep-navy dark:text-white font-semibold">crecimiento escalable</span>.
             </p>
 
             <div className="grid grid-cols-2 gap-6">
@@ -64,12 +84,12 @@ export default function IdentitySection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.2 + index * 0.1 }}
-                  className="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-electric-blue/30 transition-colors"
+                  className="flex items-start gap-4 p-4 rounded-xl bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/5 hover:border-electric-blue/30 transition-colors duration-700"
                 >
                   <item.icon className="w-8 h-8 text-electric-blue" />
                   <div>
-                    <h4 className="font-bold text-white text-sm">{item.label}</h4>
-                    <p className="text-xs text-silver-mist font-mono opacity-70">{item.sub}</p>
+                    <h4 className="font-bold text-deep-navy dark:text-white text-sm transition-colors duration-700">{item.label}</h4>
+                    <p className="text-xs text-slate-500 dark:text-silver-mist font-mono opacity-70 transition-colors duration-700">{item.sub}</p>
                   </div>
                 </motion.div>
               ))}
@@ -83,32 +103,32 @@ export default function IdentitySection() {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="relative z-10 bg-gradient-to-br from-white/10 to-transparent p-1 rounded-3xl backdrop-blur-xl border border-white/20 shadow-2xl">
-              <div className="bg-[#0a0f1c]/80 rounded-[22px] p-8 h-[500px] flex flex-col items-center justify-center text-center relative overflow-hidden">
+            <div className="relative z-10 bg-gradient-to-br from-white/80 via-white/50 to-transparent dark:from-white/10 dark:to-transparent p-1 rounded-3xl backdrop-blur-xl border border-white/20 shadow-2xl transition-colors duration-700">
+              <div className="bg-white/90 dark:bg-[#0a0f1c]/80 rounded-[22px] p-8 h-[500px] flex flex-col items-center justify-center text-center relative overflow-hidden transition-colors duration-700">
                 {/* Abstract Graphic */}
-                <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20 bg-center" />
+                <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10 dark:opacity-20 bg-center" />
                 <div className="w-32 h-32 rounded-full border-4 border-electric-blue/30 flex items-center justify-center mb-8 relative">
-                  <div className="absolute inset-0 border-4 border-t-neon-cyan border-r-transparent border-b-transparent border-l-transparent rounded-full animate-spin" />
-                  <Cpu className="w-12 h-12 text-white" />
+                  <div className="absolute inset-0 border-4 border-t-electric-blue dark:border-t-neon-cyan border-r-transparent border-b-transparent border-l-transparent rounded-full animate-spin" />
+                  <Cpu className="w-12 h-12 text-deep-navy dark:text-white transition-colors duration-700" />
                 </div>
 
-                <h3 className="text-2xl font-bold text-white mb-2">Nuestra Misión</h3>
-                <p className="text-silver-mist mb-8 max-w-sm">
+                <h3 className="text-2xl font-bold text-deep-navy dark:text-white mb-2 transition-colors duration-700">Nuestra Misión</h3>
+                <p className="text-slate-600 dark:text-silver-mist mb-8 max-w-sm transition-colors duration-700">
                   Democratizar el acceso a la Inteligencia Artificial para que
                   ningún negocio se quede obsoleto.
                 </p>
 
-                <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mb-8" />
+                <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-white/20 to-transparent mb-8 transition-colors duration-700" />
 
                 <div className="flex gap-4">
                   <div className="text-center">
                     <div className="text-3xl font-bold text-gradient font-display">100%</div>
-                    <div className="text-xs text-silver-mist font-mono mt-1">COMPROMISO</div>
+                    <div className="text-xs text-slate-500 dark:text-silver-mist font-mono mt-1 transition-colors duration-700">COMPROMISO</div>
                   </div>
-                  <div className="w-px h-12 bg-white/10" />
+                  <div className="w-px h-12 bg-gray-200 dark:bg-white/10" />
                   <div className="text-center">
                     <div className="text-3xl font-bold text-gradient font-display">24/7</div>
-                    <div className="text-xs text-silver-mist font-mono mt-1">MONITOREO</div>
+                    <div className="text-xs text-slate-500 dark:text-silver-mist font-mono mt-1 transition-colors duration-700">MONITOREO</div>
                   </div>
                 </div>
               </div>

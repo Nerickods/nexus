@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
+import Header from "@/features/landing/components/Header";
+import LiquidBackground from "@/shared/components/LiquidBackground";
+import { ThemeProvider, themeInitScript } from "@/shared/components/ThemeProvider";
 
 const spaceGrotesk = Space_Grotesk({
     variable: "--font-space-grotesk",
@@ -32,12 +35,24 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="es" className="scroll-smooth">
+        <html lang="es" className="scroll-smooth" suppressHydrationWarning>
+            <head>
+                {/* Script para prevenir flash de tema incorrecto (FOIT) */}
+                <script
+                    dangerouslySetInnerHTML={{ __html: themeInitScript }}
+                />
+            </head>
             <body
-                className={`${spaceGrotesk.variable} ${inter.variable} antialiased`}
+                className={`${spaceGrotesk.variable} ${inter.variable} antialiased bg-white dark:bg-deep-navy text-deep-navy dark:text-pure-white font-body transition-colors duration-700`}
             >
-                {children}
+                <ThemeProvider>
+                    <Header />
+                    {children}
+                    <LiquidBackground />
+                </ThemeProvider>
             </body>
         </html>
     );
 }
+
+

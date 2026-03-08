@@ -7,6 +7,7 @@ const config: Config = {
         "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
         "./src/features/**/*.{js,ts,jsx,tsx,mdx}",
     ],
+    darkMode: "class",
     theme: {
         extend: {
             colors: {
@@ -32,6 +33,7 @@ const config: Config = {
                 'glow': '0 0 40px rgba(0, 102, 255, 0.4)',
                 'glow-strong': '0 0 50px rgba(0, 212, 255, 0.5)',
                 'neon': '0 0 10px rgba(0, 212, 255, 0.5), 0 0 20px rgba(0, 212, 255, 0.3)',
+                'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
             },
             dropShadow: {
                 'neon': '0 0 15px rgba(0, 102, 255, 0.4)',
@@ -40,6 +42,9 @@ const config: Config = {
                 'cyber-reveal': 'cyber-reveal 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards',
                 'slow-scan': 'scan 4s linear infinite',
                 'pulse-glow': 'pulse-glow 3s infinite',
+                'float-bg': 'floatBG 15s ease-in-out infinite',
+                'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                'aurora': 'aurora 20s linear infinite',
             },
             keyframes: {
                 'cyber-reveal': {
@@ -53,7 +58,15 @@ const config: Config = {
                 'pulse-glow': {
                     '0%, 100%': { opacity: '1', filter: 'brightness(1)' },
                     '50%': { opacity: '0.8', filter: 'brightness(1.2)' },
-                }
+                },
+                'floatBG': {
+                    '0%, 100%': { backgroundPosition: 'center center' },
+                    '50%': { backgroundPosition: '70% 30%' },
+                },
+                'aurora': {
+                    '0%': { backgroundPosition: '50% 50%, 50% 50%' },
+                    '100%': { backgroundPosition: '350% 50%, 350% 50%' },
+                },
             }
         },
     },
