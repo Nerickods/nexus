@@ -6,28 +6,28 @@ import { GlassCard } from "@/shared/components/GlassCard";
 
 const painPoints = [
     {
-        emoji: "😰",
-        quote: "Pierdo clientes porque no me encuentran online",
-        description:
-            "Tu competencia ya tiene presencia digital. Cada día que pasas invisible, son clientes que nunca sabrán que existes.",
-    },
-    {
-        emoji: "⏰",
-        quote: "Paso horas en tareas repetitivas que me consumen",
-        description:
-            "Responder las mismas preguntas. Agendar citas manualmente. Horas que podrías dedicar a hacer crecer tu negocio.",
-    },
-    {
         emoji: "💸",
-        quote: "Gasto en publicidad pero no veo resultados",
+        quote: "Pierdo dinero todos los días en procesos operativos que se repiten.",
         description:
-            "Sin una landing optimizada y automatización, cada peso en ads es dinero que se evapora sin convertir.",
+            "Tu equipo invierte horas copiando, pegando y gestionando datos manualmente en lugar de enfocarse en trabajo de alto valor.",
+    },
+    {
+        emoji: "🧱",
+        quote: "El negocio está estancado. No sabemos cómo escalar.",
+        description:
+            "Has llegado a un cuello de botella. Agregar más personas a la plantilla ya no es rentable ni sostenible.",
+    },
+    {
+        emoji: "👻",
+        quote: "Invertimos en marketing, pero no conseguimos clientes nuevos.",
+        description:
+            "El tráfico llega a tu sitio, pero tienes fricción en el embudo. Los leads no se califican y se enfrían antes de hablar contigo.",
     },
     {
         emoji: "😵",
-        quote: "La tecnología me abruma y no sé por dónde empezar",
+        quote: "La IA suena genial, pero implementar tecnología siempre es un dolor.",
         description:
-            'Escuchas "IA", "automatización", "chatbots"... pero todo suena demasiado complicado o caro para tu negocio.',
+            'Te preoocupa depender de técnicos caros para actualizar una sola línea o que tu equipo rechace usar el nuevo sistema.',
     },
 ];
 
@@ -114,14 +114,12 @@ export default function ProblemSection() {
                     className="text-center max-w-2xl mx-auto"
                 >
                     <p className="text-lg md:text-xl text-slate-600 dark:text-silver-mist mb-4 transition-colors duration-700">
-                        No estás solo. El{" "}
-                        <span className="text-electric-blue dark:text-neon-cyan font-semibold">73%</span> de los
-                        emprendedores mexicanos sienten que la tecnología avanza más rápido
-                        de lo que pueden adaptarse.
+                        La mayoría de empresas B2B comparten este diagnóstico. El problema no es tu equipo,
+                        <span className="text-electric-blue dark:text-neon-cyan font-semibold"> es tu sistema actual.</span>
                     </p>
                     <p className="text-xl md:text-2xl font-semibold text-deep-navy dark:text-white transition-colors duration-700">
-                        Pero hay una forma de ponerte al día.{" "}
-                        <span className="text-warning-amber">Rápido.</span>
+                        Podemos construir un motor predecible para ti.{" "}
+                        <span className="text-warning-amber">Y hacerlo increíblemente rápido.</span>
                     </p>
                 </motion.div>
             </div>

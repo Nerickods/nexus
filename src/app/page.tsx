@@ -3,43 +3,47 @@ import ProblemSection from "@/features/landing/components/ProblemSection";
 import NewEraSection from "@/features/landing/components/NewEraSection";
 import SolutionSection from "@/features/landing/components/SolutionSection";
 import IdentitySection from "@/features/landing/components/IdentitySection";
-import ServicesSection from "@/features/landing/components/ServicesSection";
+import ProcessSection from "@/features/landing/components/ProcessSection";
 import PricingSection from "@/features/landing/components/PricingSection";
 import CaseStudySection from "@/features/landing/components/CaseStudySection";
+import FAQSection from "@/features/landing/components/FAQSection";
 import CTASection from "@/features/landing/components/CTASection";
 import FooterSection from "@/features/landing/components/FooterSection";
 
 export default function Home() {
     return (
-        <main className="min-h-screen bg-deep-navy">
-            {/* 1. Hero - Primera impresión + CTA */}
+        <main className="min-h-screen bg-deep-navy overflow-hidden">
+            {/* 1. Hero */}
             <HeroSection />
 
-            {/* 2. Problema - Pain points del target */}
+            {/* 2. Problema */}
             <ProblemSection />
 
-            {/* 3. Nueva Era - Contexto histórico IA */}
+            {/* 3. El Stack Invisible / Proceso (Nuevo) */}
+            <ProcessSection />
+
+            {/* 4. Nueva Era */}
             <NewEraSection />
 
-            {/* 4. Solución - Cómo resolvemos (NEXUS.AI) */}
+            {/* 5. Solución */}
             <SolutionSection />
 
-            {/* 4.5. Identidad - Misión/Visión */}
+            {/* 4.5. Identidad */}
             <IdentitySection />
 
-            {/* 5. Servicios - Catálogo detallado */}
-            <ServicesSection />
-
-            {/* 6. Precios - Planes accesibles */}
+            {/* 6. Precios */}
             <PricingSection />
 
-            {/* 7. Caso de Éxito - Academia MMA */}
+            {/* 7. Caso de Éxito */}
             <CaseStudySection />
 
-            {/* 8. CTA Final - Calendly + Urgencia */}
+            {/* 8. FAQ (Nuevo - Objeciones) */}
+            <FAQSection />
+
+            {/* 9. CTA Final */}
             <CTASection />
 
-            {/* 9. Footer - Legal + Redes */}
+            {/* 10. Footer */}
             <FooterSection />
         </main>
     );

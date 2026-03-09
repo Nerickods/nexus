@@ -53,10 +53,12 @@ export default function CTASection() {
                     <h2 className="text-4xl md:text-6xl font-bold mb-6 text-deep-navy dark:text-white text-shadow-glow transition-colors duration-700">
                         ¿Listo Para Conectar Tu Negocio <span className="text-gradient">Con El Futuro</span>?
                     </h2>
-                    <p className="text-xl text-slate-600 dark:text-silver-mist max-w-2xl mx-auto transition-colors duration-700">
-                        Agenda una consulta gratuita de 15 minutos. Sin ventas agresivas.
-                        Solo estrategia pura para ver si somos el match correcto.
+                    <p className="text-xl text-slate-600 dark:text-silver-mist max-w-2xl mx-auto transition-colors duration-700 mb-4">
+                        Llévate una consultoría gratis sin compromiso. Descubramos si somos el partner correcto.
                     </p>
+                    <span className="inline-block bg-warning-amber/10 text-warning-amber border border-warning-amber/20 px-4 py-1.5 rounded-full text-sm font-mono tracking-wide uppercase">
+                        ⚡ Solo 3 cupos disponibles este mes
+                    </span>
                 </motion.div>
 
                 <div className="grid md:grid-cols-2 gap-8 items-stretch">

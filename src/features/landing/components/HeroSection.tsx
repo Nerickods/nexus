@@ -105,25 +105,27 @@ export default function HeroSection() {
                     initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
                     animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="text-5xl md:text-7xl lg:text-9xl font-display font-bold leading-[0.95] mb-8 tracking-tight text-white"
+                    className="text-5xl md:text-7xl lg:text-8xl font-display font-bold leading-[1.1] mb-8 tracking-tight text-white max-w-5xl mx-auto"
                 >
-                    El Futuro <span className="text-silver-mist opacity-50 font-light italic">YA</span> Llegó.
-                    <br />
-                    <span className="text-gradient drop-shadow-neon">Adáptate o Muere.</span>
+                    Creamos tu Funnel a Medida y Automatizamos tu <span className="text-gradient drop-shadow-neon">Atención al Cliente</span>
+                    <br className="hidden lg:block" />
+                    en Menos de 10 Días.
                 </motion.h1>
 
-                {/* Subheadline */}
+                {/* Subheadline (Elevator Pitch + Escasez) */}
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
-                    className="max-w-2xl text-lg md:text-xl text-silver-mist leading-relaxed mb-12 font-body"
+                    className="max-w-3xl text-lg md:text-xl text-silver-mist leading-relaxed mb-12 font-body"
                 >
-                    Consultoría de Inteligencia Artificial de alto nivel.
-                    <br className="hidden md:block" />
-                    Entendemos que <span className="text-white font-semibold border-b border-warning-amber/50 pb-0.5">la velocidad es la única divisa que importa</span>.
+                    La mayoría de las agencias construyen software que no usas. Nosotros construimos un{" "}
+                    <span className="text-white font-semibold border-b border-warning-amber/50 pb-0.5">Stack Invisible</span> optimizado
+                    estrictamente para tus necesidades. Actualiza la información sin depender de un técnico.
                     <br />
-                    No vendemos herramientas. Instalamos superpoderes.
+                    <span className="block mt-4 text-warning-amber font-mono text-sm uppercase tracking-wider">
+                        ⚡ Solo 3 cupos disponibles este mes para garantizar nuestro nivel de soporte.
+                    </span>
                 </motion.p>
 
                 {/* CTA Buttons */}
@@ -135,7 +137,7 @@ export default function HeroSection() {
                 >
                     <a href="#cta">
                         <LiquidButton variant="glow" className="text-lg px-8 py-4">
-                            INICIAR TRANSFORMACIÓN <Rocket className="w-5 h-5 group-hover:rotate-45 transition-transform" />
+                            AGENDAR LLAMADA DE DESCUBRIMIENTO <Rocket className="w-5 h-5 group-hover:translate-y-[-2px] group-hover:translate-x-[2px] transition-transform" />
                         </LiquidButton>
                     </a>
 
