@@ -1,156 +1,81 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown, Rocket, Activity, Terminal } from "lucide-react";
+import { ArrowDown, Rocket } from "lucide-react";
 import { GlassCard } from "@/shared/components/GlassCard";
 import { LiquidButton } from "@/shared/components/LiquidButton";
+import ScrollExpandMedia from "@/shared/components/ui/scroll-expansion-hero";
 
 export default function HeroSection() {
     return (
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-            {/* 1. Background Enhancements (On top of Global LiquidBackground) */}
-            <div className="absolute inset-0 z-0 pointer-events-none">
-                {/* Abstract Grid Floor */}
-                <div
-                    className="absolute inset-0 opacity-10 dark:opacity-20"
-                    style={{
-                        backgroundImage: `linear-gradient(rgba(0, 212, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 212, 255, 0.1) 1px, transparent 1px)`,
-                        backgroundSize: '80px 80px',
-                        transform: 'perspective(1000px) rotateX(60deg) translateY(100px) scale(2)',
-                        maskImage: 'linear-gradient(to bottom, transparent 0%, black 40%, black 100%)'
-                    }}
-                />
+        <ScrollExpandMedia
+            mediaType="image"
+            mediaSrc="/images/hero/media.png"
+            bgImageSrc="/images/hero/bg.png"
+            titleLeft="Descubre el verdadero"
+            titleRight="potencial de tu negocio"
+            date="NEXUS_SYSTEM"
+            scrollToExpand="Desliza para descubrir"
+            textBlend={true}
+        >
+            <div className="w-full h-full flex flex-col justify-between items-center px-4 md:px-6 py-24 md:py-28 pointer-events-auto">
 
-                {/* Floating "Portal" Elements (Glass Cards in 3D Space) */}
-                <div className="absolute inset-0 overflow-hidden">
-                    <motion.div
-                        initial={{ opacity: 0, x: 100, rotateY: -20 }}
-                        animate={{ opacity: 1, x: 0, rotateY: -10 }}
-                        transition={{ duration: 1.5, ease: "easeOut" }}
-                        className="absolute top-[20%] right-[5%] hidden lg:block"
-                    >
-                        <GlassCard variant="premium" className="w-[500px] h-[350px] p-8 transform preserve-3d">
-                            <div className="flex justify-between items-center mb-6">
-                                <div className="flex gap-2 text-electric-blue">
-                                    <Activity className="w-5 h-5 animate-pulse" />
-                                    <span className="text-xs font-mono opacity-80">SYSTEM_OPTIMIZED</span>
-                                </div>
-                                <div className="flex gap-1.5">
-                                    <div className="w-2 h-2 rounded-full bg-electric-blue" />
-                                    <div className="w-2 h-2 rounded-full bg-white/20" />
-                                </div>
-                            </div>
-                            {/* Abstract Data Visualization */}
-                            <div className="flex-1 space-y-4">
-                                <div className="flex items-end gap-2 h-32 border-b border-white/5 pb-2">
-                                    {[40, 65, 45, 80, 55, 90, 75].map((h, i) => (
-                                        <motion.div
-                                            key={i}
-                                            initial={{ height: 0 }}
-                                            animate={{ height: `${h}%` }}
-                                            transition={{ duration: 1, delay: 0.5 + (i * 0.1) }}
-                                            className="w-full bg-gradient-to-t from-electric-blue/20 to-electric-blue/60 rounded-t-sm"
-                                        />
-                                    ))}
-                                </div>
-                                <div className="flex justify-between text-xs font-mono text-silver-mist">
-                                    <span>GROWTH_METRICS</span>
-                                    <span className="text-success-green">+124.5%</span>
-                                </div>
-                            </div>
-                        </GlassCard>
-                    </motion.div>
-
-                    <motion.div
-                        initial={{ opacity: 0, x: -100, rotateY: 20 }}
-                        animate={{ opacity: 1, x: 0, rotateY: 10 }}
-                        transition={{ duration: 1.8, ease: "easeOut", delay: 0.2 }}
-                        className="absolute bottom-[20%] left-[5%] hidden lg:block"
-                    >
-                        <GlassCard variant="basic" className="w-[350px] h-[220px] p-6 transform preserve-3d border-l-4 border-l-cyber-purple">
-                            <div className="flex items-center gap-3 mb-4 border-b border-white/5 pb-3">
-                                <Terminal className="w-5 h-5 text-cyber-purple" />
-                                <span className="text-xs font-mono text-cyber-purple">AUTO_RESPONSE_LOG</span>
-                            </div>
-                            <div className="space-y-2 font-mono text-[10px] text-silver-mist/80">
-                                <p>&gt; Initializing Neural Link...</p>
-                                <p className="text-neon-cyan">&gt; Connection Established (14ms)</p>
-                                <p>&gt; Loading User Context...</p>
-                                <p className="text-success-green">&gt; Conversion Probability: 98%</p>
-                            </div>
-                        </GlassCard>
-                    </motion.div>
-                </div>
-            </div>
-
-            {/* 2. Hero Content */}
-            <div className="relative z-20 max-w-7xl mx-auto px-6 flex flex-col items-center text-center">
-                {/* Badge */}
+                {/* TOP: Badge */}
                 <motion.div
-                    initial={{ opacity: 0, y: -20, filter: "blur(5px)" }}
-                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
+                    className="flex shrink-0"
                 >
-                    <GlassCard variant="basic" className="mb-8 inline-flex items-center gap-3 px-5 py-2.5 rounded-full !bg-white/5 !border-white/10 hover:!border-neon-cyan/30">
-                        <span className="relative flex h-2.5 w-2.5">
+                    <GlassCard variant="basic" className="inline-flex items-center gap-2 md:gap-3 px-4 md:px-5 py-2 md:py-2.5 rounded-full !bg-white/5 !border-white/10 hover:!border-neon-cyan/30">
+                        <span className="relative flex h-2 w-2 md:h-2.5 md:w-2.5">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-neon-cyan opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-neon-cyan"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 md:h-2.5 md:w-2.5 bg-neon-cyan"></span>
                         </span>
-                        <span className="text-xs font-mono tracking-widest text-neon-cyan uppercase font-semibold">Nexus_System v2.0 Online</span>
+                        <span className="text-[10px] md:text-xs font-mono tracking-widest text-neon-cyan uppercase font-semibold">
+                            Iniciando protocolo de integración
+                        </span>
                     </GlassCard>
                 </motion.div>
 
-                {/* H1 Headline */}
-                <motion.h1
-                    initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
-                    animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    className="text-5xl md:text-7xl lg:text-8xl font-display font-bold leading-[1.1] mb-8 tracking-tight text-white max-w-5xl mx-auto"
-                >
-                    Creamos tu Funnel a Medida y Automatizamos tu <span className="text-gradient drop-shadow-neon">Atención al Cliente</span>
-                    <br className="hidden lg:block" />
-                    en Menos de 10 Días.
-                </motion.h1>
+                {/* MIDDLE: Empty space to let the expanding box and split titles shine */}
+                <div className="flex-1" />
 
-                {/* Subheadline (Elevator Pitch + Escasez) */}
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                    className="max-w-3xl text-lg md:text-xl text-silver-mist leading-relaxed mb-12 font-body"
-                >
-                    La mayoría de las agencias construyen software que no usas. Nosotros construimos un{" "}
-                    <span className="text-white font-semibold border-b border-warning-amber/50 pb-0.5">Stack Invisible</span> optimizado
-                    estrictamente para tus necesidades. Actualiza la información sin depender de un técnico.
-                    <br />
-                    <span className="block mt-4 text-warning-amber font-mono text-sm uppercase tracking-wider">
-                        ⚡ Solo 3 cupos disponibles este mes para garantizar nuestro nivel de soporte.
-                    </span>
-                </motion.p>
-
-                {/* CTA Buttons */}
+                {/* BOTTOM: Subheader & CTAs */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.6 }}
-                    className="flex flex-col md:flex-row gap-6 items-center"
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    className="flex flex-col items-center text-center max-w-4xl shrink-0"
                 >
-                    <a href="#cta">
-                        <LiquidButton variant="glow" className="text-lg px-8 py-4">
-                            AGENDAR LLAMADA DE DESCUBRIMIENTO <Rocket className="w-5 h-5 group-hover:translate-y-[-2px] group-hover:translate-x-[2px] transition-transform" />
-                        </LiquidButton>
-                    </a>
+                    <h2 className="text-xl md:text-2xl lg:text-3xl font-display font-medium leading-relaxed mb-4 md:mb-6 tracking-wide text-white drop-shadow-lg">
+                        Creamos tu Funnel a Medida y Automatizamos tu{" "}
+                        <br className="hidden md:block" />
+                        <span className="text-neon-cyan font-semibold">Atención al Cliente</span>{" "}
+                        en Menos de 10 Días.
+                    </h2>
 
-                    <a href="#services">
-                        <LiquidButton variant="ghost" className="text-silver-mist hover:text-white">
-                            Explorar Sistemas <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform text-electric-blue" />
-                        </LiquidButton>
-                    </a>
+                    <p className="text-xs md:text-sm lg:text-base text-silver-mist leading-relaxed mb-6 md:mb-8 font-body max-w-xl px-4">
+                        La mayoría de las agencias construyen software que no usas. Nosotros construimos un{" "}
+                        <span className="text-white font-semibold border-b border-warning-amber/50 pb-[1px]">Stack Invisible</span>{" "}
+                        optimizado estrictamente para tus necesidades.
+                    </p>
+
+                    <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
+                        <a href="#cta">
+                            <LiquidButton variant="glow" className="text-xs md:text-sm px-6 py-3 font-semibold tracking-wide">
+                                AGENDAR LLAMADA <Rocket className="w-3.5 h-3.5 md:w-4 md:h-4 ml-2 inline-block group-hover:translate-x-1 transition-transform" />
+                            </LiquidButton>
+                        </a>
+                        <a href="#services">
+                            <LiquidButton variant="ghost" className="text-silver-mist hover:text-white text-xs md:text-sm px-4">
+                                Explorar Sistemas <ArrowDown className="w-3.5 h-3.5 md:w-4 md:h-4 inline-block ml-1 group-hover:translate-y-1 transition-transform text-electric-blue" />
+                            </LiquidButton>
+                        </a>
+                    </div>
                 </motion.div>
-            </div>
 
-            {/* 3. Bottom Gradient Fade */}
-            <div className="absolute bottom-0 w-full h-32 bg-gradient-to-t from-deep-navy to-transparent z-10 pointer-events-none" />
-        </section>
+            </div>
+        </ScrollExpandMedia>
     );
 }
