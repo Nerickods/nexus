@@ -128,7 +128,7 @@ const ScrollExpandMedia = ({
 
     // Scale Box logic
     const startW = isMobile ? 90 : 55;
-    const startH = isMobile ? 40 : 50;
+    const startH = isMobile ? 35 : 35; // Reducido el alto inicial en desktop de 50 a 35 para mejor espaciado
     const currentW = startW + currentProgress * (100 - startW);
     const currentH = startH + currentProgress * (100 - startH);
 
@@ -158,70 +158,75 @@ const ScrollExpandMedia = ({
                 {/* Main Viewport Container */}
                 <div className="flex flex-col items-center justify-center w-full min-h-screen relative z-10">
 
-                    {/* LEFT / TOP Split Text */}
-                    <motion.h1
-                        className={`absolute top-[15%] md:top-[20%] text-center z-20 text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-white whitespace-nowrap tracking-tight drop-shadow-lg ${textBlend ? "mix-blend-overlay" : ""}`}
-                        style={{
-                            transform: `translateX(-${translateX}vw)`,
-                            opacity: safeOpacity
-                        }}
-                    >
-                        {titleLeft}
-                    </motion.h1>
-
-                    {/* EXPANDING MEDIA BOX */}
-                    <div
-                        className="absolute z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 overflow-hidden bg-black/20 backdrop-blur-sm"
-                        style={{
-                            width: `${currentW}vw`,
-                            height: `${currentH}vh`,
-                            borderRadius: `${Math.max(0, 24 * (1 - currentProgress))}px`,
-                            boxShadow: currentProgress < 0.5 ? "0px 20px 50px rgba(0, 212, 255, 0.2)" : "none",
-                        }}
-                    >
-                        {mediaType === "video" ? (
-                            <div className="relative w-full h-full pointer-events-none">
-                                <video
-                                    src={mediaSrc}
-                                    poster={posterSrc}
-                                    autoPlay muted loop playsInline
-                                    className="w-full h-full object-cover"
-                                />
-                                <div className="absolute inset-0 bg-black/30" />
-                            </div>
-                        ) : (
-                            <div className="relative w-full h-full pointer-events-none">
-                                <Image
-                                    src={mediaSrc}
-                                    alt="Hero expanding media"
-                                    fill
-                                    className="object-cover"
-                                    priority
-                                />
-                                <div className="absolute inset-0 bg-black/20" />
-                            </div>
-                        )}
-
-                        {/* Internal Box Text (Fades out) */}
-                        <motion.div
-                            style={{ opacity: safeOpacity }}
-                            className="absolute inset-0 flex flex-col items-center justify-center z-20 pointer-events-none"
+                    {/* MEDIA BOX WRAPPER (to keep z-index correct regarding the texts) */}
+                    <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+                        {/* EXPANDING MEDIA BOX */}
+                        <div
+                            className="transform overflow-hidden bg-black/20 backdrop-blur-sm pointer-events-none"
+                            style={{
+                                width: `${currentW}vw`,
+                                height: `${currentH}vh`,
+                                borderRadius: `${Math.max(0, 24 * (1 - currentProgress))}px`,
+                                boxShadow: currentProgress < 0.5 ? "0px 20px 50px rgba(0, 212, 255, 0.2)" : "none",
+                            }}
                         >
-                            {date && <p className="text-sm md:text-xl text-white font-mono tracking-widest font-semibold drop-shadow-md">{date}</p>}
-                            {scrollToExpand && <p className="text-[10px] md:text-xs text-neon-cyan/90 mt-2 font-medium bg-black/50 px-3 py-1 rounded-full backdrop-blur-md border border-white/20 uppercase tracking-wider">{scrollToExpand}</p>}
-                        </motion.div>
+                            {mediaType === "video" ? (
+                                <div className="relative w-full h-full pointer-events-none">
+                                    <video
+                                        src={mediaSrc}
+                                        poster={posterSrc}
+                                        autoPlay muted loop playsInline
+                                        className="w-full h-full object-cover"
+                                    />
+                                    <div className="absolute inset-0 bg-black/30" />
+                                </div>
+                            ) : (
+                                <div className="relative w-full h-full pointer-events-none">
+                                    <Image
+                                        src={mediaSrc}
+                                        alt="Hero expanding media"
+                                        fill
+                                        className="object-cover"
+                                        priority
+                                    />
+                                    <div className="absolute inset-0 bg-black/20" />
+                                </div>
+                            )}
+
+                            {/* Internal Box Text (Fades out) */}
+                            <motion.div
+                                style={{ opacity: safeOpacity }}
+                                className="absolute inset-0 flex flex-col items-center justify-center z-20 pointer-events-none"
+                            >
+                                {date && <p className="text-sm md:text-xl text-white font-mono tracking-widest font-semibold drop-shadow-md">{date}</p>}
+                                {scrollToExpand && <p className="text-[10px] md:text-xs text-neon-cyan/90 mt-2 font-medium bg-black/50 px-3 py-1 rounded-full backdrop-blur-md border border-white/20 uppercase tracking-wider">{scrollToExpand}</p>}
+                            </motion.div>
+                        </div>
                     </div>
 
-                    {/* RIGHT / BOTTOM Split Text */}
-                    <motion.h1
-                        className={`absolute bottom-[18%] md:bottom-[20%] text-center z-20 text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-white whitespace-nowrap tracking-tight drop-shadow-lg ${textBlend ? "mix-blend-overlay" : ""}`}
-                        style={{
-                            transform: `translateX(${translateX}vw)`,
-                            opacity: safeOpacity
-                        }}
-                    >
-                        {titleRight}
-                    </motion.h1>
+                    {/* CENTERED SPLIT TEXT (Original UX Logic) */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 md:gap-3 z-20 pointer-events-none">
+                        <motion.h1
+                            className="text-center text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-white whitespace-nowrap tracking-tight"
+                            style={{
+                                transform: `translateX(-${translateX}vw)`,
+                                opacity: safeOpacity,
+                                textShadow: "0 0 15px rgba(0, 212, 255, 0.8), 0 0 30px rgba(0, 212, 255, 0.6), 0 0 45px rgba(0, 212, 255, 0.4)"
+                            }}
+                        >
+                            {titleLeft}
+                        </motion.h1>
+                        <motion.h1
+                            className="text-center text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-white whitespace-nowrap tracking-tight"
+                            style={{
+                                transform: `translateX(${translateX}vw)`,
+                                opacity: safeOpacity,
+                                textShadow: "0 0 15px rgba(0, 212, 255, 0.8), 0 0 30px rgba(0, 212, 255, 0.6), 0 0 45px rgba(0, 212, 255, 0.4)"
+                            }}
+                        >
+                            {titleRight}
+                        </motion.h1>
+                    </div>
 
                     {/* 4. STATIC CHILDREN */}
                     <motion.div
