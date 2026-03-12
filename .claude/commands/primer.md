@@ -38,13 +38,15 @@ src/
 ```
 
 ### MCPs Disponibles
-Tienes 3 MCPs conectados. Úsalos:
+Tienes 4 MCPs principales. Úsalos proactivamente:
 
-| MCP | Comandos Clave | Cuándo Usar |
+| Herramienta | Comandos Clave | Cuándo Usar |
 |-----|----------------|-------------|
-| **Supabase** | `list_tables`, `execute_sql`, `apply_migration`, `get_logs` | SIEMPRE para BD. No uses CLI. |
-| **Next.js DevTools** | `nextjs_index`, `nextjs_call`, `browser_eval` | Debug errores, ver estado del servidor |
-| **Playwright** | `browser_navigate`, `browser_snapshot`, `browser_click` | Validación visual, testing UI |
+| **Supabase** | `list_tables`, `execute_sql`, `apply_migration` | SIEMPRE para BD. No uses CLI. |
+| **Next.js DevTools** | `nextjs_index`, `nextjs_call`, `browser_eval` | Debug errores, ver estado del  servidor |
+| **NotebookLM** | `mcp_ask_question`, `mcp_list_notebooks` | Investigación profunda y consultas de base de conocimiento |
+| **Stitch** | `mcp_generate_screen_from_text`, `mcp_get_screen` | Generación e iteración de UI/UX visualmente |
+| **Navegador Nativo** | `browser_navigate`, `browser_snapshot` | Validación visual real, testing interactivo |
 
 ### Agentes Especializados
 Delega tareas complejas a agentes via `Task` tool:
@@ -120,7 +122,7 @@ SaaS Factory v1.0 (Next.js 16 + Supabase)
 - ...
 
 ## MCPs Activos
-✅ Supabase | ✅ Next.js DevTools | ✅ Playwright
+✅ Supabase | ✅ Next.js DevTools | ✅ NotebookLM | ✅ Stitch | ✅ Navegador Nativo
 
 ## Comandos
 - `npm run dev` → Desarrollo
@@ -141,13 +143,15 @@ SaaS Factory v1.0 (Next.js 16 + Supabase)
 
 ### Velocidad = Inteligencia
 - Turbopack permite 100 iteraciones en 30 segundos
-- Usa Playwright para validar visualmente → código → screenshot → iterar
+- Usa el **Navegador Nativo** para validar visualmente → código → screenshot → iterar
 - No planifiques de más, ejecuta y ajusta
 
 ### MCPs son tus Sentidos
 - **Supabase MCP** = Tu conexión a la BD (no uses CLI)
 - **Next.js DevTools** = Tus ojos en errores/logs
-- **Playwright** = Tu validación visual
+- **NotebookLM** = Tu cerebro de investigación y documentación
+- **Stitch** = Tus manos de diseñador UI
+- **Navegador Nativo** = Tu validación visual en tiempo real
 
 ---
 

@@ -9,8 +9,7 @@ import ScrollExpandMedia from "@/shared/components/ui/scroll-expansion-hero";
 export default function HeroSection() {
     return (
         <ScrollExpandMedia
-            mediaType="image"
-            mediaSrc="/images/hero/media.png"
+            mediaType="lumina"
             bgImageSrc="/images/hero/bg.png"
             titleLeft="Descubre el verdadero"
             titleRight="potencial de tu negocio"
