@@ -27,9 +27,8 @@ export default function FAQSection() {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
 
     return (
-        <section className="relative py-24 bg-white dark:bg-[#0a0f1c] transition-colors duration-700 overflow-hidden">
+        <section className="relative py-24 bg-transparent overflow-hidden">
             {/* Background elements */}
-            <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-gray-50 dark:from-deep-navy to-transparent pointer-events-none" />
             <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-cyber-purple/5 blur-[120px] rounded-full pointer-events-none" />
 
             <div className="relative z-10 max-w-4xl mx-auto px-6">

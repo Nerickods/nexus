@@ -2,42 +2,10 @@
 
 import { motion } from "framer-motion";
 import { MoveRight, Zap } from "lucide-react";
-import Image from "next/image";
 
 export default function NewEraSection() {
     return (
-        <section className="relative py-32 overflow-hidden bg-white dark:bg-deep-navy transition-colors duration-700">
-            {/* Background Image Layer */}
-            <div className="absolute inset-0 z-0">
-                {/* Dark Mode Texture */}
-                <div className="absolute inset-0 z-0 opacity-0 dark:opacity-40 mix-blend-color-dodge transition-opacity duration-700">
-                    <Image
-                        src="/assets/backgrounds/bg-new-era.png"
-                        alt="New Era Dawn"
-                        fill
-                        className="object-cover"
-                        quality={90}
-                    />
-                </div>
-                {/* Light Mode Texture */}
-                <div className="absolute inset-0 z-0 opacity-40 dark:opacity-0 mix-blend-overlay transition-opacity duration-700">
-                    <Image
-                        src="/assets/backgrounds/bg-new-era-light.png"
-                        alt="New Era Light"
-                        fill
-                        className="object-cover"
-                        quality={90}
-                    />
-                </div>
-            </div>
-            {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white via-white/90 to-cyber-purple/10 dark:from-deep-navy dark:via-deep-navy/90 dark:to-cyber-purple/20 opacity-70 pointer-events-none transition-colors duration-700" />
-
-            {/* Top Transition Gradient */}
-            <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-white to-transparent dark:from-deep-navy dark:to-transparent z-10 pointer-events-none transition-colors duration-700" />
-
-            {/* Bottom Transition Gradient */}
-            <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-white via-white/80 to-transparent dark:from-deep-navy dark:via-deep-navy/80 z-10 pointer-events-none transition-colors duration-700" />
+        <section className="relative py-32 overflow-hidden bg-transparent">
 
             <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
                 {/* Visual Content - Timeline/Grid */}

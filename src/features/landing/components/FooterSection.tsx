@@ -1,7 +1,6 @@
 "use client";
 
 import { Globe, MessageSquare, Cog, Code, Linkedin, Instagram, Twitter, Mail, Phone, MapPin } from "lucide-react";
-import Image from "next/image";
 
 const services = [
     { icon: Globe, label: "Landing Pages" },
@@ -18,19 +17,7 @@ const socials = [
 
 export default function FooterSection() {
     return (
-        <footer className="relative bg-gray-100 dark:bg-deep-navy border-t border-gray-200 dark:border-white/10 overflow-hidden transition-colors duration-700">
-            {/* Background Image Layer */}
-            <div className="absolute inset-0 z-0 opacity-5 dark:opacity-10 mix-blend-multiply pointer-events-none transition-opacity duration-700">
-                <Image
-                    src="/assets/backgrounds/bg-footer.png"
-                    alt="Footer Network"
-                    fill
-                    className="object-cover"
-                    quality={90}
-                />
-            </div>
-            {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gray-100/90 dark:bg-deep-navy/90 pointer-events-none transition-colors duration-700" />
+        <footer className="relative bg-transparent border-t border-gray-200 dark:border-white/10 overflow-hidden transition-colors duration-700">
 
             <div className="relative z-10 max-w-7xl mx-auto px-6 py-16">
                 <div className="grid md:grid-cols-4 gap-12">

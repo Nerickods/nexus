@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { Check, Star } from "lucide-react";
-import Image from "next/image";
 import { GlassCard } from "@/shared/components/GlassCard";
 import { LiquidButton } from "@/shared/components/LiquidButton";
 
@@ -52,20 +51,7 @@ const plans = [
 
 export default function PricingSection() {
     return (
-        <section id="pricing" className="relative py-24 bg-gray-100 dark:bg-deep-navy overflow-hidden transition-colors duration-700">
-            {/* Background Image Layer */}
-            <div className="absolute inset-0 z-0 opacity-15 mix-blend-overlay pointer-events-none">
-                <Image
-                    src="/assets/backgrounds/bg-pricing.png"
-                    alt="Premium Vault"
-                    fill
-                    className="object-cover"
-                    quality={90}
-                />
-            </div>
-            {/* Gradient Overlay */}
-            <div className="absolute inset-0 z-0 bg-gradient-to-t from-gray-100 via-gray-100/90 to-gray-100/50 dark:from-deep-navy dark:via-deep-navy/90 dark:to-deep-navy/50 pointer-events-none transition-colors duration-700" />
-
+        <section id="pricing" className="relative py-24 bg-transparent overflow-hidden">
 
             <div className="relative z-10 max-w-7xl mx-auto px-6">
                 <motion.div

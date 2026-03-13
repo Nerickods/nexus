@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { Trophy, TrendingUp, Users, Clock } from "lucide-react";
-import Image from "next/image";
 
 const results = [
     { icon: TrendingUp, value: "+340%", label: "Leads captados" },
@@ -12,39 +11,7 @@ const results = [
 
 export default function CaseStudySection() {
     return (
-        <section className="relative py-24 md:py-32 bg-white dark:bg-deep-navy overflow-hidden transition-colors duration-700">
-            {/* Background Image Layer */}
-            <div className="absolute inset-0 z-0">
-                {/* Dark Mode Texture */}
-                <div className="absolute inset-0 z-0 opacity-0 dark:opacity-40 mix-blend-overlay transition-opacity duration-700">
-                    <Image
-                        src="/assets/backgrounds/bg-case-study.png"
-                        alt="Growth Chart"
-                        fill
-                        className="object-cover"
-                        quality={90}
-                    />
-                </div>
-                {/* Light Mode Texture */}
-                <div className="absolute inset-0 z-0 opacity-40 dark:opacity-0 mix-blend-overlay transition-opacity duration-700">
-                    <Image
-                        src="/assets/backgrounds/bg-case-study-light.png"
-                        alt="Growth Chart Light"
-                        fill
-                        className="object-cover"
-                        quality={90}
-                    />
-                </div>
-            </div>
-
-            {/* Gradient Overlay */}
-            <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_bottom,transparent_10%,#ffffff_90%)] dark:bg-[radial-gradient(ellipse_at_bottom,transparent_10%,#0A0F1C_90%)] pointer-events-none transition-all duration-700" />
-
-            {/* Top Transition Gradient */}
-            <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-white to-transparent dark:from-deep-navy dark:to-transparent z-10 pointer-events-none transition-colors duration-700" />
-
-            {/* Bottom Transition Gradient */}
-            <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-white via-white/80 to-transparent dark:from-deep-navy dark:via-deep-navy/80 to-transparent z-10 pointer-events-none transition-colors duration-700" />
+        <section className="relative py-24 md:py-32 bg-transparent overflow-hidden">
 
             <div className="relative z-10 max-w-5xl mx-auto px-6">
                 {/* Section Title */}

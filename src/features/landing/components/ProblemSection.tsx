@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { GlassCard } from "@/shared/components/GlassCard";
 
 const painPoints = [
@@ -33,38 +32,7 @@ const painPoints = [
 
 export default function ProblemSection() {
     return (
-        <section className="relative py-24 md:py-32 bg-white dark:bg-deep-navy overflow-hidden transition-colors duration-700">
-            {/* Background Image Layer */}
-            <div className="absolute inset-0 z-0">
-                {/* Dark Mode Texture */}
-                <div className="absolute inset-0 z-0 opacity-0 dark:opacity-40 mix-blend-color-dodge transition-opacity duration-700">
-                    <Image
-                        src="/assets/backgrounds/bg-problem.png"
-                        alt="Digital Chaos"
-                        fill
-                        className="object-cover"
-                        quality={90}
-                    />
-                </div>
-                {/* Light Mode Texture */}
-                <div className="absolute inset-0 z-0 opacity-40 dark:opacity-0 mix-blend-color-dodge transition-opacity duration-700">
-                    <Image
-                        src="/assets/backgrounds/bg-problem-light.png"
-                        alt="Digital Chaos Light"
-                        fill
-                        className="object-cover"
-                        quality={90}
-                    />
-                </div>
-            </div>
-            {/* Dark Overlay for readability - Radial Gradient */}
-            <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,transparent_0%,#ffffff_90%)] dark:bg-[radial-gradient(circle_at_center,transparent_0%,#0A0F1C_90%)] pointer-events-none transition-all duration-700" />
-
-            {/* Top Transition Gradient */}
-            <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-white to-transparent dark:from-deep-navy dark:to-transparent z-10 pointer-events-none transition-colors duration-700" />
-
-            {/* Bottom Transition Gradient */}
-            <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-white via-white/80 to-transparent dark:from-deep-navy dark:via-deep-navy/80 z-10 pointer-events-none transition-colors duration-700" />
+        <section className="relative py-24 md:py-32 bg-transparent overflow-hidden">
 
             <div className="relative z-10 max-w-7xl mx-auto px-6">
                 {/* Section Title */}

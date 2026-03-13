@@ -2,46 +2,13 @@
 
 import { motion } from "framer-motion";
 import { Send, Zap, MessageSquare } from "lucide-react";
-import Image from "next/image";
 import { GlassCard } from "@/shared/components/GlassCard";
 import { GlassInput } from "@/shared/components/GlassInput";
 import { LiquidButton } from "@/shared/components/LiquidButton";
 
 export default function CTASection() {
     return (
-        <section id="cta" className="relative py-32 bg-white dark:bg-deep-navy overflow-hidden flex items-center justify-center transition-colors duration-700">
-            {/* Background Image Layer */}
-            <div className="absolute inset-0 z-0">
-                {/* Dark Mode Texture */}
-                <div className="absolute inset-0 z-0 opacity-0 dark:opacity-50 mix-blend-screen transition-opacity duration-700">
-                    <Image
-                        src="/assets/backgrounds/bg-cta.png"
-                        alt="Warp Speed Action"
-                        fill
-                        className="object-cover"
-                        quality={90}
-                    />
-                </div>
-                {/* Light Mode Texture */}
-                <div className="absolute inset-0 z-0 opacity-50 dark:opacity-0 mix-blend-multiply transition-opacity duration-700">
-                    <Image
-                        src="/assets/backgrounds/bg-cta-light.png"
-                        alt="Warp Speed Action Light"
-                        fill
-                        className="object-cover"
-                        quality={90}
-                    />
-                </div>
-            </div>
-
-            {/* Reactor Core Effect */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-electric-blue/10 dark:bg-electric-blue/20 rounded-full blur-[100px] animate-pulse-glow transition-colors duration-700" />
-
-            {/* Overlay for form visibility */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#ffffff_80%)] dark:bg-[radial-gradient(circle_at_center,transparent_0%,#0A0F1C_80%)] pointer-events-none transition-all duration-700" />
-
-            {/* Top Transition Gradient */}
-            <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-white to-transparent dark:from-deep-navy dark:to-transparent z-10 pointer-events-none transition-colors duration-700" />
+        <section id="cta" className="relative py-32 bg-transparent overflow-hidden flex items-center justify-center">
 
             <div className="relative z-10 max-w-4xl mx-auto px-6 w-full text-center">
                 <motion.div

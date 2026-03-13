@@ -2,47 +2,10 @@
 
 import { motion } from "framer-motion";
 import { Cpu, Users, Code, Target } from "lucide-react";
-import Image from "next/image";
 
 export default function IdentitySection() {
   return (
-    <section id="identity" className="relative py-24 bg-white dark:bg-deep-navy overflow-hidden transition-colors duration-700">
-      {/* Background Image Layer */}
-      <div className="absolute inset-0 z-0">
-        {/* Dark Mode Texture */}
-        <div className="absolute inset-0 z-0 opacity-0 dark:opacity-40 mix-blend-color-dodge transition-opacity duration-700">
-          <Image
-            src="/assets/backgrounds/bg-identity.png"
-            alt="Digital DNA"
-            fill
-            className="object-cover"
-            quality={90}
-          />
-        </div>
-        {/* Light Mode Texture */}
-        <div className="absolute inset-0 z-0 opacity-40 dark:opacity-0 mix-blend-color-dodge transition-opacity duration-700">
-          <Image
-            src="/assets/backgrounds/bg-identity-light.png"
-            alt="Digital DNA Light"
-            fill
-            className="object-cover"
-            quality={90}
-          />
-        </div>
-      </div>
-
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_right,transparent_20%,#ffffff_100%)] dark:bg-[radial-gradient(ellipse_at_right,transparent_20%,#0A0F1C_100%)] pointer-events-none transition-all duration-700" />
-
-      {/* Top Transition Gradient */}
-      <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-white to-transparent dark:from-deep-navy dark:to-transparent z-10 pointer-events-none transition-colors duration-700" />
-
-      {/* Bottom Transition Gradient */}
-      <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-white via-white/80 to-transparent dark:from-deep-navy dark:via-deep-navy/80 to-transparent z-10 pointer-events-none transition-colors duration-700" />
-
-      {/* Decorative Blurred Circles */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-electric-blue/5 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-cyber-purple/5 rounded-full blur-[100px] pointer-events-none" />
+    <section id="identity" className="relative py-24 bg-transparent overflow-hidden">
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
