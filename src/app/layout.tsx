@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/features/landing/components/Header";
@@ -48,7 +49,9 @@ export default function RootLayout({
                 <ThemeProvider>
                     <Header />
                     {children}
-                    <LiquidBackground />
+                    <Suspense fallback={null}>
+                        <LiquidBackground />
+                    </Suspense>
                 </ThemeProvider>
             </body>
         </html>
