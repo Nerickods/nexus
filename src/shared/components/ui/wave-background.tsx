@@ -143,7 +143,7 @@ export function Waves({
     }
 
     const onMouseMove = (e: MouseEvent) => {
-        updateMousePosition(e.pageX, e.pageY)
+        updateMousePosition(e.clientX, e.clientY)
     }
 
     const onTouchMove = (e: TouchEvent) => {
@@ -157,7 +157,7 @@ export function Waves({
 
         const mouse = mouseRef.current
         mouse.x = x - boundingRef.current.left
-        mouse.y = y - boundingRef.current.top + window.scrollY
+        mouse.y = y - boundingRef.current.top
 
         if (!mouse.set) {
             mouse.sx = mouse.x
