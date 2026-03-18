@@ -20,7 +20,7 @@ interface ScrollExpandMediaProps {
     mediaType?: "video" | "image" | "lumina";
     mediaSrc?: string;
     posterSrc?: string;
-    bgImageSrc: string;
+    bgImageSrc?: string;
     titleLeft?: string;
     titleRight?: string;
     date?: string;
@@ -58,6 +58,7 @@ const ScrollExpandMedia = ({
     const titleRightRef = useRef<HTMLHeadingElement | null>(null);
     const childrenRef = useRef<HTMLDivElement | null>(null);
     const internalTextRef = useRef<HTMLDivElement | null>(null);
+    const mediaContentRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
         setMounted(true);
@@ -114,6 +115,19 @@ const ScrollExpandMedia = ({
         }
         if (internalTextRef.current) {
             internalTextRef.current.style.opacity = String(safeOpacity);
+        }
+
+        // 3. New Reveal Effect: Blur and Transparency on the media content
+        if (mediaContentRef.current) {
+            // Blur: starts at 20px (progress=0) and reaches 0px (progress=1)
+            const blurAmount = Math.max(0, 20 * (1 - progress));
+            // Saturation: starts at 0 (grayscale) and reaches 1 (full color)
+            const saturation = progress;
+            // Opacity: starts at 0.3 and reaches 1.0 (fully opaque)
+            const mediaOpacity = 0.3 + (progress * 0.7);
+
+            mediaContentRef.current.style.filter = `blur(${blurAmount}px) saturate(${saturation})`;
+            mediaContentRef.current.style.opacity = String(mediaOpacity);
         }
     }, [isMobile]);
 
@@ -208,23 +222,25 @@ const ScrollExpandMedia = ({
     const startH = isMobile ? 35 : 35;
 
     return (
-        <div ref={sectionRef} className="bg-[#050B14] overflow-hidden w-full relative">
+        <div ref={sectionRef} className="bg-transparent overflow-hidden w-full relative">
             <section className="relative flex flex-col items-center justify-start min-h-screen">
 
                 {/* 1. Background Image */}
-                <div
-                    ref={bgRef}
-                    className="absolute inset-0 z-0 h-full w-full pointer-events-none"
-                >
-                    <Image
-                        src={bgImageSrc}
-                        alt="Hero Background"
-                        fill
-                        className="object-cover object-center"
-                        priority
-                    />
-                    <div className="absolute inset-0 bg-black/50" />
-                </div>
+                {bgImageSrc && (
+                    <div
+                        ref={bgRef}
+                        className="absolute inset-0 z-0 h-full w-full pointer-events-none"
+                    >
+                        <Image
+                            src={bgImageSrc}
+                            alt="Hero Background"
+                            fill
+                            className="object-cover object-center"
+                            priority
+                        />
+                        <div className="absolute inset-0 bg-black/50" />
+                    </div>
+                )}
 
                 {/* Main Viewport Container */}
                 <div className="flex flex-col items-center justify-center w-full min-h-screen relative z-10">
@@ -244,32 +260,43 @@ const ScrollExpandMedia = ({
                                 willChange: 'transform, opacity, width, height, border-radius'
                             }}
                         >
-                            {mediaType === "video" ? (
-                                <div className="relative w-full h-full pointer-events-none">
-                                    <video
-                                        src={mediaSrc}
-                                        poster={posterSrc}
-                                        autoPlay muted loop playsInline
-                                        className="w-full h-full object-cover"
-                                    />
-                                    <div className="absolute inset-0 bg-black/30" />
-                                </div>
-                            ) : mediaType === "lumina" ? (
-                                <div className="relative w-full h-full pointer-events-auto">
-                                    <LuminaSlider isActive={mediaFullyExpanded} />
-                                </div>
-                            ) : (
-                                <div className="relative w-full h-full pointer-events-none">
-                                    <Image
-                                        src={mediaSrc || ''}
-                                        alt="Hero expanding media"
-                                        fill
-                                        className="object-cover"
-                                        priority
-                                    />
-                                    <div className="absolute inset-0 bg-black/20" />
-                                </div>
-                            )}
+                            {/* NEW: Media content wrapper with reveal effect */}
+                            <div 
+                                ref={mediaContentRef}
+                                className="w-full h-full"
+                                style={{ 
+                                    willChange: 'filter, opacity',
+                                    filter: 'blur(20px) saturate(0)',
+                                    opacity: 0.3
+                                }}
+                            >
+                                {mediaType === "video" ? (
+                                    <div className="relative w-full h-full pointer-events-none">
+                                        <video
+                                            src={mediaSrc}
+                                            poster={posterSrc}
+                                            autoPlay muted loop playsInline
+                                            className="w-full h-full object-cover"
+                                        />
+                                        <div className="absolute inset-0 bg-black/30" />
+                                    </div>
+                                ) : mediaType === "lumina" ? (
+                                    <div className="relative w-full h-full pointer-events-auto">
+                                        <LuminaSlider isActive={mediaFullyExpanded} />
+                                    </div>
+                                ) : (
+                                    <div className="relative w-full h-full pointer-events-none">
+                                        <Image
+                                            src={mediaSrc || ''}
+                                            alt="Hero expanding media"
+                                            fill
+                                            className="object-cover"
+                                            priority
+                                        />
+                                        <div className="absolute inset-0 bg-black/20" />
+                                    </div>
+                                )}
+                            </div>
 
                             {/* Internal Box Text (Fades out) */}
                             <div

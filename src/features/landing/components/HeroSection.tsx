@@ -10,7 +10,6 @@ export default function HeroSection() {
     return (
         <ScrollExpandMedia
             mediaType="lumina"
-            bgImageSrc="/images/hero/bg.png"
             titleLeft="Descubre el verdadero"
             titleRight="potencial de tu negocio"
             textBlend={true}
